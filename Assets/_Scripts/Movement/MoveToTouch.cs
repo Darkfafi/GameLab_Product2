@@ -4,7 +4,6 @@ using System.Collections;
 public class MoveToTouch : MoveableNetworkEntity {
 	
 	private Vector2 _destination = Vector2.zero;
-	private float _objectSpeed = 0;
 
 	protected override void Start ()
 	{
