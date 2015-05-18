@@ -5,6 +5,7 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	protected float _speed;
 	protected float _objectSpeed;
 	protected Rigidbody2D _rigidBody;
+	protected bool _isGrounded;
 
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
@@ -82,6 +83,21 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		
 		transform.eulerAngles = Vector3.Slerp(syncStartEuler, syncEndEuler, syncTime / syncDelay);
 	}
-
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.transform.tag == Tags.Ground)
+		{
+			_isGrounded = true;
+			Debug.Log("Hitting Ground");
+		}
+	}
+	void OnCollisionExit2D(Collision2D other)
+	{
+		if(other.transform.tag == Tags.Ground)
+		{
+			_isGrounded = false;
+			Debug.Log("Leaving Ground");
+		}
+	}
 
 }

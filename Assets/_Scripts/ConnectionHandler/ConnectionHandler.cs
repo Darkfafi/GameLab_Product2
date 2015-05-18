@@ -82,7 +82,7 @@ public class ConnectionHandler : MonoBehaviour {
 		GameObject newPlayer = player01Prefab;
 		if(Network.isClient) 
 			newPlayer = player02Prefab;
-		GameObject player = Network.Instantiate(newPlayer, new Vector3(0f, 5f, 0f), Quaternion.identity, 0) as GameObject;
+		GameObject player = Network.Instantiate(newPlayer, new Vector3(0f, 0f, 0f), Quaternion.identity, 0) as GameObject;
 	}
 	private void RefreshHostList()
 	{
