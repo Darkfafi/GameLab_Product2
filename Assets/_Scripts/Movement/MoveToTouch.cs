@@ -31,7 +31,6 @@ public class MoveToTouch : MoveableNetworkEntity {
 			Movement();
 			_objectSpeed -= 0.05f; //hoe hard moet het remmen.(des de hoger de value des de sneller dat het object remt).
 		}
-		Debug.Log (VectorConverter.GetRotationSyncVector (Vector2.right,90));
 	}
 
 	private void Movement(){

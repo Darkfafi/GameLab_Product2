@@ -8,20 +8,22 @@ public class VectorConverter {
 											  new Vector2(Mathf.Abs(vectorDirection.x),0),
 											  new Vector2(0,-Mathf.Abs(vectorDirection.y)),
 											  new Vector2(-Mathf.Abs(vectorDirection.x),0)};
-		Vector2 calclatedVector = Vector2.zero;
+		Vector2 calclatedVector = vectorDirection;
 
 		switch(rotationInDegrees.ToString()){
 			case "0":
 				calclatedVector = vectorDirection;
 				break;
 			case "90":
-				calclatedVector = _vectorList[GetArrayLoopIndex(_vectorList,1,System.Array.IndexOf(_vectorList,vectorDirection))];
+				calclatedVector = new Vector2(calclatedVector.y,-calclatedVector.x);
+				//calclatedVector = _vectorList[GetArrayLoopIndex(_vectorList,1,System.Array.IndexOf(_vectorList,vectorDirection))];
 				break;
 			case "180":
 				calclatedVector = -vectorDirection;
 				break;
 			case "270":
-				calclatedVector = _vectorList[GetArrayLoopIndex(_vectorList,-1,System.Array.IndexOf(_vectorList,vectorDirection))];
+				calclatedVector = new Vector2(-calclatedVector.y,calclatedVector.x);
+				//calclatedVector = _vectorList[GetArrayLoopIndex(_vectorList,-1,System.Array.IndexOf(_vectorList,vectorDirection))];
 				break;
 		}
 		return calclatedVector;
