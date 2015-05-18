@@ -8,6 +8,7 @@ public class VectorConverter {
 											  new Vector2(Mathf.Abs(vectorDirection.x),0),
 											  new Vector2(0,-Mathf.Abs(vectorDirection.y)),
 											  new Vector2(-Mathf.Abs(vectorDirection.x),0)};
+
 		Vector2 calclatedVector = vectorDirection;
 
 		switch(rotationInDegrees.ToString()){
