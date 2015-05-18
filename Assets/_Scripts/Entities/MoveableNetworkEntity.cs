@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MoveableNetworkEntity : MonoBehaviour {
 	protected float _speed;
+	protected float _objectSpeed;
+	protected Rigidbody2D _rigidBody;
 
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
@@ -11,7 +13,6 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	private Vector3 syncStartEuler = Vector3.zero;
 	private Vector3 syncEndPosition = Vector3.zero;
 	private Vector3 syncEndEuler = Vector3.zero;
-	protected Rigidbody2D _rigidBody;
 	private NetworkView _networkView;
 	private Animator _animator;
 	
