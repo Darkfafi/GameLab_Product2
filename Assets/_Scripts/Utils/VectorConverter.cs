@@ -11,7 +11,7 @@ public class VectorConverter {
 
 		Vector2 calclatedVector = vectorDirection;
 
-		switch(rotationInDegrees.ToString()){
+		switch(Mathf.FloorToInt(rotationInDegrees).ToString()){
 			case "0":
 				calclatedVector = vectorDirection;
 				break;
