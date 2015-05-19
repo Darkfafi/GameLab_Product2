@@ -5,6 +5,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	private float _jumpForce;
 	private float _gravity;
 	private Vector2 _currentGravity;
+	private int _direction;
 	protected override void Start ()
 	{
 		base.Start ();
@@ -17,18 +18,43 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	protected override void Update ()
 	{
 		base.Update ();
-		Movement();
-		Gravity();
+		if(_networkView.isMine)
+		{
+			Movement();
+			Gravity();
+		}
 		//CheckGravity();
 	}
 	
 	private void Movement(){
-		if (Input.GetKey(KeyCode.D) && _rigidBody.velocity.x < 1)
-			_rigidBody.velocity += new Vector2(transform.right.x, 0) * _speed;
-		if (Input.GetKey(KeyCode.A) && _rigidBody.velocity.x > -1)
-			_rigidBody.velocity += new Vector2(-transform.right.x, 0) * _speed;
+		if (Input.GetKey(KeyCode.D))
+		{
+			ChangeObjectSpeed(-1);
+			_direction = 1;
+		}
+		if (Input.GetKey(KeyCode.A))
+		{
+			ChangeObjectSpeed(1);
+			_direction = -1;
+		}
 		if(Input.GetKey(KeyCode.Space) && _isGrounded)
 			Jump();
+		if(_objectSpeed > 0)
+		{
+			_objectSpeed -= 0.055f;
+		}
+		Vector3 movement = new Vector3(VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).x,VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).y,0);
+		_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
+	}
+	private void ChangeObjectSpeed(int antiDirection)
+	{
+		if(_objectSpeed < _speed && _direction != antiDirection)
+		{
+			_objectSpeed += 0.5f;
+		} else
+		{
+			_objectSpeed = 0;
+		}
 	}
 	private void Gravity()
 	{

@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 269191485}
   - 114: {fileID: 269191486}
+  - 148: {fileID: 269191487}
   m_Layer: 0
   m_Name: ConnectionHandler
   m_TagString: Untagged
@@ -129,6 +130,18 @@ MonoBehaviour:
   player01Prefab: {fileID: 190938, guid: d397da896ab92b94f879dbe280952d57, type: 2}
   player02Prefab: {fileID: 188034, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
   currentCamera: {fileID: 1978333998}
+--- !u!148 &269191487
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 269191484}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 269191486}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
 --- !u!1 &556016745
 GameObject:
   m_ObjectHideFlags: 0

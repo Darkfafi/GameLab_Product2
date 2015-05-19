@@ -6,6 +6,7 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	protected float _objectSpeed;
 	protected Rigidbody2D _rigidBody;
 	protected bool _isGrounded;
+	protected NetworkView _networkView;
 
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
@@ -14,9 +15,8 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	private Vector3 syncStartEuler = Vector3.zero;
 	private Vector3 syncEndPosition = Vector3.zero;
 	private Vector3 syncEndEuler = Vector3.zero;
-	private NetworkView _networkView;
 	private Animator _animator;
-	
+
 	protected virtual void Awake()
 	{
 		_networkView = this.GetComponent<NetworkView>();

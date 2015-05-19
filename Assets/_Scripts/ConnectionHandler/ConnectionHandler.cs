@@ -12,10 +12,13 @@ public class ConnectionHandler : MonoBehaviour {
 	public GameObject player01Prefab;
 	public GameObject player02Prefab;
 	public GameObject currentCamera;
+	private bool _inGameRoom;
+
 	void Awake()
 	{
 		_networkView = GetComponent<NetworkView>();
 	}
+
 	void Start()
 	{
 		MasterServer.ipAddress = _remoteIP;
@@ -43,20 +46,52 @@ public class ConnectionHandler : MonoBehaviour {
 				}
 			}
 		}
+		if(Network.isServer && _inGameRoom)
+		{
+			if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game"))
+			{
+				_networkView.RPC("StartGame",RPCMode.All);
+			}
+			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Player-1");
+			for (int i = 0; i < Network.connections.Length; i++) 
+			{
+				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + i+1.ToString());
+			}
+		}
+		else if(Network.isClient && _inGameRoom)
+		{
+			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 100), "Player-1");
+			for (int i = 0; i < Network.connections.Length; i++) 
+			{
+				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + i+1.ToString());
+			}
+		}
+		Debug.Log(Network.connections.Length);
 	}
 	private void StartServer()
 	{
 		Network.InitializeServer(_maxPlayers, _remotePort, !Network.HavePublicAddress());
 		MasterServer.RegisterHost(_typeName, _gameName);
 	}
-	void OnServerInitialized()
+	[RPC]
+	private void StartGame()
 	{
+		_inGameRoom = false;
 		SpawnPlayer();
 	}
-	
+	void OnServerInitialized()
+	{
+		JoinGameRoom();
+		//SpawnPlayer();
+	}
+	void JoinGameRoom()
+	{
+		_inGameRoom = true;
+	}
 	void OnConnectedToServer()
 	{
-		SpawnPlayer();
+		JoinGameRoom();
+		//SpawnPlayer();
 	}
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
 		if (Network.isServer)
