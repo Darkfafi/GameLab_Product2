@@ -29,7 +29,7 @@ public class MoveToTouch : MoveableNetworkEntity {
 
 		if (_objectSpeed > 0) {
 			Movement();
-			_objectSpeed -= 0.05f; //hoe hard moet het remmen.(des de hoger de value des de sneller dat het object remt).
+			_objectSpeed -= 0.055f; //hoe hard moet het remmen.(des de hoger de value des de sneller dat het object remt).
 		}
 	}
 
