@@ -9,10 +9,11 @@ public class ConnectionHandler : MonoBehaviour {
 	private int _maxPlayers = 2;
 	private HostData[] _hostList;
 	private NetworkView _networkView;
+	private bool _inGameRoom;
+
 	public GameObject player01Prefab;
 	public GameObject player02Prefab;
 	public GameObject currentCamera;
-	private bool _inGameRoom;
 
 	void Awake()
 	{
@@ -48,14 +49,17 @@ public class ConnectionHandler : MonoBehaviour {
 		}
 		if(Network.isServer && _inGameRoom)
 		{
-			if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game"))
-			{
-				_networkView.RPC("StartGame",RPCMode.All);
-			}
 			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Player-1");
 			for (int i = 0; i < Network.connections.Length; i++) 
 			{
-				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + i+1.ToString());
+				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + (i+1).ToString());
+			}
+			if(Network.connections.Length > 0)
+			{
+				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game"))
+				{
+					_networkView.RPC("StartGame",RPCMode.All);
+				}
 			}
 		}
 		else if(Network.isClient && _inGameRoom)
@@ -63,10 +67,9 @@ public class ConnectionHandler : MonoBehaviour {
 			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 100), "Player-1");
 			for (int i = 0; i < Network.connections.Length; i++) 
 			{
-				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + i+1.ToString());
+				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + (i+1).ToString());
 			}
 		}
-		Debug.Log(Network.connections.Length);
 	}
 	private void StartServer()
 	{
@@ -77,6 +80,7 @@ public class ConnectionHandler : MonoBehaviour {
 	private void StartGame()
 	{
 		_inGameRoom = false;
+		MasterServer.UnregisterHost();
 		SpawnPlayer();
 	}
 	void OnServerInitialized()
