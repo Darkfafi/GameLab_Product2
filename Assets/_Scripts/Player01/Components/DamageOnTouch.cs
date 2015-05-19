@@ -7,21 +7,23 @@ public class DamageOnTouch : MonoBehaviour {
 	public int damageToDeal = 1;
 
 	void OnTriggerEnter2D(Collider2D other){
+
 		if (ListContainsGameobject(other.gameObject) && other.gameObject.GetComponent<Lives>() != null) {
-			other.gameObject.GetComponent<Lives>().AddSubLife(damageToDeal);
+			other.gameObject.GetComponent<Lives>().AddSubLife(-damageToDeal);
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
+
 		if (ListContainsGameobject(other.gameObject) && other.gameObject.GetComponent<Lives>() != null) {
-			other.gameObject.GetComponent<Lives>().AddSubLife(damageToDeal);
+			other.gameObject.GetComponent<Lives>().AddSubLife(-damageToDeal);
 		}
 	}
 
 	bool ListContainsGameobject(GameObject other){
 		bool returnValue = false;
 		for (int i = 0; i < listOfTargetsToDamage.Length; i++){
-			if(listOfTargetsToDamage[i] == other){
+			if(listOfTargetsToDamage[i].tag == other.tag){
 				returnValue = true;
 				break;
 			}
