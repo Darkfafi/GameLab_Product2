@@ -54,7 +54,7 @@ public class HomingObject : MoveableNetworkEntity {
 			Vector2 steeringForce = desiredVelocity - _directionMoving;
 			_directionMoving += (steeringForce / _mass);
 
-			transform.rotation = Vector2.Angle(new Vector2(transform.position.x,transform.position.y),_directionMoving);
+			transform.rotation = new Quaternion(transform.rotation.x,Vector2.Angle(new Vector2(transform.position.x,transform.position.y),_directionMoving),transform.rotation.z,transform.rotation.w);
 		} 
 		transform.position += new Vector3 (_directionMoving.x, _directionMoving.y, 0) * _objectSpeed;
 	}
