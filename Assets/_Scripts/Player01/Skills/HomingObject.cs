@@ -10,11 +10,8 @@ public class HomingObject : MoveableNetworkEntity {
 	//homing
 	private GameObject _objectToFollow;
 	private bool _homing = false;
-	private float _slowingRadius = 100;
 	private float _mass = 3;
-
 	private Vector2 _directionMoving = new Vector2(0,1);
-	//TODO Also add mass and let the object drag on turn with vectors and mass.
 
 	// Update is called once per frame
 	protected override void Update () {
@@ -34,29 +31,36 @@ public class HomingObject : MoveableNetworkEntity {
 		_objectToFollow = objectToFollow;
 		_speed = speed;
 		_timeTillStartHoming = timeTillStartHoming;
-		_objectSpeed = 1f;
+		_objectSpeed = speed;
 	}
 
 	void Move(){
 		if (_homing && _objectToFollow != null) {
+			if (_objectSpeed < _speed) {
+				_objectSpeed += _speed * 0.015f;
+				Debug.Log (_objectSpeed);
+			}
 			Vector2 targetPosition = _objectToFollow.transform.position;
 
-			Vector2 desiredStep	= targetPosition - new Vector2(transform.position.x,transform.position.y);
+			Vector2 desiredStep = targetPosition - new Vector2 (transform.position.x, transform.position.y);
 			float distanceToTarget = desiredStep.magnitude;
 
-			Vector2 desiredVelocity	= desiredStep * _speed;
-
-			if (distanceToTarget < _slowingRadius){
-
-				desiredVelocity	=	desiredVelocity * (desiredVelocity.magnitude / _slowingRadius);
-			}
-
+			Vector2 desiredVelocity = desiredStep.normalized * _speed;
+		
 			Vector2 steeringForce = desiredVelocity - _directionMoving;
 			_directionMoving += (steeringForce / _mass);
 
-			transform.rotation = new Quaternion(transform.rotation.x,Vector2.Angle(new Vector2(transform.position.x,transform.position.y),_directionMoving),transform.rotation.z,transform.rotation.w);
-		} 
-		transform.position += new Vector3 (_directionMoving.x, _directionMoving.y, 0) * _objectSpeed;
+			//TODO Slow and smooth rotation.
+			transform.eulerAngles = new Vector3 (transform.rotation.x, transform.rotation.y, Mathf.Atan2(desiredStep.y,desiredStep.x) * 180 / Mathf.PI + 90);
+
+		}else {
+			if (_objectSpeed > 0) {
+				_objectSpeed -= _speed * 0.004f;
+			}else if(_objectSpeed <= 0){
+				_objectSpeed = 0.5f;
+			}
+		}
+		_rigidBody.transform.position += new Vector3 (_directionMoving.x, _directionMoving.y, 0) * _objectSpeed * Time.deltaTime;
 	}
 
 	void DestroyHomingObject(){

@@ -6,8 +6,9 @@ public class Slot {
 	private int _slotId;
 	private ISkill _slotSkill;
 
-	public void UseSkill(){
-		_slotSkill.ActivateSkill ();
+	public void UseSkill(GameObject target, GameObject caster = null){
+		_slotSkill.ActivateSkill (target,caster);
+		//Note : GameObject.Instantiate <-- gebruik voor missile skill!
 	}
 
 	public ISkill slotSkill{

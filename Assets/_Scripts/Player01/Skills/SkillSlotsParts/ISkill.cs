@@ -2,6 +2,5 @@
 using System.Collections;
 
 public interface ISkill {
-
-	void ActivateSkill();
+	void ActivateSkill(GameObject target = null, GameObject caster = null);
 }
