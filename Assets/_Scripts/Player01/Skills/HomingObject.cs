@@ -16,6 +16,7 @@ public class HomingObject : MoveableNetworkEntity {
 	protected override void Start ()
 	{
 		base.Start ();
+		_directionMoving = VectorConverter.GetRotationSyncVector (_directionMoving, transform.rotation.eulerAngles.z);
 		Invoke ("DestroyHomingObject", 6f);
 	}
 
@@ -36,7 +37,8 @@ public class HomingObject : MoveableNetworkEntity {
 			}
 		}
 	}
-	public void SetHomingObject(GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
+	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
+		syncStartPosition = startPosition;
 		_timeCreated = Time.time;
 		_objectToFollow = objectToFollow;
 		_speed = speed;

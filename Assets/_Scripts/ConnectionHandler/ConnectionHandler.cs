@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ConnectionHandler : MonoBehaviour {
 	private const string _typeName = "Join Me!";
@@ -11,6 +12,7 @@ public class ConnectionHandler : MonoBehaviour {
 	private NetworkView _networkView;
 	private bool _inGameRoom;
 
+	public Text informationText;
 	public GameObject player01Prefab;
 	public GameObject player02Prefab;
 	public GameObject currentCamera;
@@ -98,17 +100,34 @@ public class ConnectionHandler : MonoBehaviour {
 		//SpawnPlayer();
 	}
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
+		string information = "";
 		if (Network.isServer)
 		{
-			Debug.Log("Local server connection disconnected: " + info);
+			information = "Local server connection disconnected: " + info;
 		}
 		else if (info == NetworkDisconnection.LostConnection)
 		{
-			Debug.Log("Lost connection to the server: " + info);
+			information = "Lost connection to the server: " + info;
 		}
 		else
 		{
-			Debug.Log("Successfully diconnected from the server: " + info);
+			information = "Successfully diconnected from the server: " + info;
+		}
+		DestroyAllNetworkObjects();
+		Debug.Log(information);
+		informationText.text = information;
+		Invoke("ClearInfoText", 1);
+	}
+	void ClearInfoText()
+	{
+		informationText.text = "";
+	}
+	void DestroyAllNetworkObjects()
+	{
+		Network.DestroyPlayerObjects(Network.player);
+		foreach(NetworkPlayer player in Network.connections)
+		{
+			Network.DestroyPlayerObjects(player);
 		}
 	}
 	void OnPlayerDisconnected(NetworkPlayer player)

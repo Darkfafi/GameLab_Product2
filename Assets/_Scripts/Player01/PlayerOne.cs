@@ -7,13 +7,15 @@ public class PlayerOne : MonoBehaviour {
 
 	SkillSlots skillSlots;
 
-	ISkill[] skillList = new ISkill[]{new ShootHomingProjectileSkill(),new DashSkill()};
+	private PlayerGravity _playerGravity;
 
 	// Use this for initialization
 	void Awake () {
 		MoveByKeyboard newMoveByKeyboard = gameObject.AddComponent<MoveByKeyboard> ();
 		_networkView = GetComponent<NetworkView>();
 		_networkView.observed = newMoveByKeyboard;
+
+		_playerGravity = GetComponent<PlayerGravity>();
 
 		skillSlots = gameObject.AddComponent<SkillSlots> ();
 
@@ -34,5 +36,19 @@ public class PlayerOne : MonoBehaviour {
 				skillSlots.UseSkillFromSlot (2, gameObject.GetComponent<DamageOnTouch> ().listOfTargetsToDamage [0]); //Dash
 			}
 		}
+	}
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.transform.tag == Tags.Surface)
+		{
+			ChangeRotation(other.transform.eulerAngles.z);
+		}
+	}
+	private void ChangeRotation(float zRotation)
+	{
+		Vector3 newEulerAngles = this.transform.eulerAngles;
+		newEulerAngles.z = zRotation;
+		transform.eulerAngles = newEulerAngles;
+		_playerGravity.CheckGravity();
 	}
 }
