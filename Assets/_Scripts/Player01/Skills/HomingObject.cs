@@ -13,6 +13,12 @@ public class HomingObject : MoveableNetworkEntity {
 	private float _mass = 3;
 	private Vector2 _directionMoving = new Vector2(0,1);
 
+	protected override void Start ()
+	{
+		base.Start ();
+		Invoke ("DestroyHomingObject", 6f);
+	}
+
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
@@ -64,6 +70,6 @@ public class HomingObject : MoveableNetworkEntity {
 	}
 
 	void DestroyHomingObject(){
-
+		Network.Destroy (this.gameObject);
 	}
 }
