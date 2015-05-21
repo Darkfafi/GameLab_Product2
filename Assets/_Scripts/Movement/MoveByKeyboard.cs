@@ -10,6 +10,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		base.Start ();
 		_speed = 3;
 		_jumpForce = 5;
+		_playerGravity = GetComponent<PlayerGravity>();
 	}
 	
 	protected override void Update ()
