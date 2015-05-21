@@ -18,13 +18,12 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		base.Update ();
 		if(_networkView.isMine)
 		{
-			Movement();
 			_playerGravity.Gravity();
 		}
 		//CheckGravity();
 	}
 	
-	private void Movement(){
+	protected override void MovementInput(){
 		if (Input.GetKey(KeyCode.D))
 		{
 			ChangeObjectSpeed(-1);
