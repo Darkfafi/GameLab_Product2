@@ -9,14 +9,14 @@ public class DamageOnTouch : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 
 		if (ListContainsGameobject(other.gameObject) && other.gameObject.GetComponent<Lives>() != null) {
-			other.gameObject.GetComponent<Lives>().AddSubLife(-damageToDeal);
+			other.gameObject.GetComponent<Lives>().SendAddSubLife(-damageToDeal);
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
 
 		if (ListContainsGameobject(other.gameObject) && other.gameObject.GetComponent<Lives>() != null) {
-			other.gameObject.GetComponent<Lives>().AddSubLife(-damageToDeal);
+			other.gameObject.GetComponent<Lives>().SendAddSubLife(-damageToDeal);
 		}
 	}
 

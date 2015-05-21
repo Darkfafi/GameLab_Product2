@@ -12,11 +12,19 @@ public class Lives : MonoBehaviour {
 
 	private bool adjustAble = true;
 
+	private NetworkView _networkView;
+
 	public float secondsCooldownAfterHit = 1f;
 
 	private float secondsPassed = 0f;
 
-	public void AddSubLife(int amount){
+	void Awake()
+	{
+		_networkView = GetComponent<NetworkView>();
+	}
+
+	[RPC]
+	private void AddSubLife(int amount){
 		if(adjustAble){
 			lives += amount;
 			if(amount < 0){
@@ -39,7 +47,11 @@ public class Lives : MonoBehaviour {
 			}
 		}
 	}
-
+	
+	public void SendAddSubLife(int amount)
+	{
+		_networkView.RPC("AddSubLife", RPCMode.All, amount);
+	}
 	void HitLessCountdownStart(){
 		adjustAble = false;
 		SendMessage ("LifeCooldownStarted", SendMessageOptions.DontRequireReceiver);
