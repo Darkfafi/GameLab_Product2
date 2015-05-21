@@ -8,13 +8,13 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	protected bool _isGrounded;
 	protected NetworkView _networkView;
 
-	private float lastSynchronizationTime = 0f;
-	private float syncDelay = 0f;
-	private float syncTime = 0f;
-	private Vector3 syncStartPosition = Vector3.zero;
-	private Quaternion syncStartRotation = Quaternion.identity;
-	private Vector3 syncEndPosition = Vector3.zero;
-	private Quaternion syncEndRotation = Quaternion.identity;
+	private float _lastSynchronizationTime = 0f;
+	private float _syncDelay = 0f;
+	private float _syncTime = 0f;
+	private Vector3 _syncStartPosition = Vector3.zero;
+	private Quaternion _syncStartRotation = Quaternion.identity;
+	private Vector3 _syncEndPosition = Vector3.zero;
+	private Quaternion _syncEndRotation = Quaternion.identity;
 	private Animator _animator;
 
 	protected virtual void Awake()
@@ -45,15 +45,15 @@ public class MoveableNetworkEntity : MonoBehaviour {
 			stream.Serialize(ref syncVelocity);
 			stream.Serialize(ref syncRotation);
 			
-			syncTime = 0f;
-			syncDelay = Time.time - lastSynchronizationTime;
-			lastSynchronizationTime = Time.time;
+			_syncTime = 0f;
+			_syncDelay = Time.time - _lastSynchronizationTime;
+			_lastSynchronizationTime = Time.time;
 			
-			syncEndPosition = syncPosition + syncVelocity * syncDelay;
-			syncStartPosition = _rigidBody.position;
+			_syncEndPosition = syncPosition + syncVelocity * _syncDelay;
+			_syncStartPosition = _rigidBody.position;
 			
-			syncEndRotation = syncRotation;
-			syncStartRotation = transform.rotation;
+			_syncEndRotation = syncRotation;
+			_syncStartRotation = transform.rotation;
 		}
 	}
 	// Use this for initialization
@@ -78,17 +78,16 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	}
 	private void SyncedMovement()
 	{
-		syncTime += Time.deltaTime;
-		_rigidBody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
+		_syncTime += Time.deltaTime;
+		_rigidBody.position = Vector3.Lerp(_syncStartPosition, _syncEndPosition, _syncTime / _syncDelay);
 		
-		transform.rotation = Quaternion.Slerp(syncStartRotation, syncEndRotation, syncTime / syncDelay);
+		transform.rotation = Quaternion.Slerp(_syncStartRotation, _syncEndRotation, _syncTime / _syncDelay);
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if(other.transform.tag == Tags.Ground)
 		{
 			_isGrounded = true;
-			Debug.Log("Hitting Ground");
 		}
 	}
 	void OnCollisionExit2D(Collision2D other)
@@ -96,7 +95,15 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		if(other.transform.tag == Tags.Ground)
 		{
 			_isGrounded = false;
-			Debug.Log("Leaving Ground");
+		}
+	}
+	public Vector3 syncStartPosition
+	{
+		get{
+			return _syncStartPosition;
+		}
+		set{
+			_syncStartPosition = value;
 		}
 	}
 

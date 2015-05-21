@@ -36,7 +36,8 @@ public class HomingObject : MoveableNetworkEntity {
 			}
 		}
 	}
-	public void SetHomingObject(GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
+	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
+		syncStartPosition = startPosition;
 		_timeCreated = Time.time;
 		_objectToFollow = objectToFollow;
 		_speed = speed;
@@ -53,7 +54,6 @@ public class HomingObject : MoveableNetworkEntity {
 			Vector2 targetPosition = _objectToFollow.transform.position;
 
 			Vector2 desiredStep = targetPosition - new Vector2 (transform.position.x, transform.position.y);
-			float distanceToTarget = desiredStep.magnitude;
 
 			Vector2 desiredVelocity = desiredStep.normalized * _speed;
 		
@@ -74,6 +74,6 @@ public class HomingObject : MoveableNetworkEntity {
 	}
 
 	void DestroyHomingObject(){
-		Network.Destroy (this.gameObject);
+		Destroy (this.gameObject);
 	}
 }
