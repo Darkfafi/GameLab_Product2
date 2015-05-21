@@ -6,8 +6,6 @@ public class MoveToTouch : MoveableNetworkEntity {
 	private Vector2 _destination = Vector2.zero;
 	private Vector2 _direction = Vector2.zero;
 
-	private bool _controlling = false;
-
 	protected override void Start ()
 	{
 		base.Start ();

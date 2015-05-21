@@ -50,7 +50,6 @@ public class HomingObject : MoveableNetworkEntity {
 		if (_homing && _objectToFollow != null) {
 			if (_objectSpeed < _speed) {
 				_objectSpeed += _speed * 0.015f;
-				Debug.Log (_objectSpeed);
 			}
 			Vector2 targetPosition = _objectToFollow.transform.position;
 

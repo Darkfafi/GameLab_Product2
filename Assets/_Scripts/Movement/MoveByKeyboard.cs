@@ -26,7 +26,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		{
 			_playerGravity.Gravity();
 		}
-		//CheckGravity();
 	}
 	
 	protected override void MovementInput(){
@@ -47,7 +46,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 
 		if(_objectSpeed > 0)
 		{
-			_objectSpeed -= 0.055f;
+			_objectSpeed -= 0.085f;
 		}
 
 		Vector3 movement = new Vector3(VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).x,VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).y,0);
@@ -75,7 +74,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			}
 		} else
 		{
-			_objectSpeed = 0;
+			_objectSpeed = -_objectSpeed; //ads a bit off slip / feel to it.
 		}
 		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * -antiDirection, transform.localScale.y, transform.localScale.z);
 	}
