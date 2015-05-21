@@ -11,8 +11,8 @@ GameObject:
   - 212: {fileID: 21206914}
   - 148: {fileID: 14801502}
   - 61: {fileID: 6192436}
-  - 114: {fileID: 11407500}
   - 50: {fileID: 5084154}
+  - 114: {fileID: 11499136}
   - 114: {fileID: 11479504}
   m_Layer: 0
   m_Name: Player01
@@ -61,17 +61,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .159999996, y: .159999996}
---- !u!114 &11407500
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef9ed1dc5fb4ba8448141ecd7beb9977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11479504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +75,17 @@ MonoBehaviour:
   listOfTargetsToDamage:
   - {fileID: 188034, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
   damageToDeal: 1
+--- !u!114 &11499136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1ca714f55321f43af9248dbecc2034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!148 &14801502
 NetworkView:
   m_ObjectHideFlags: 1
@@ -94,7 +94,7 @@ NetworkView:
   m_GameObject: {fileID: 190938}
   m_Enabled: 1
   m_StateSynchronization: 1
-  m_Observed: {fileID: 11407500}
+  m_Observed: {fileID: 0}
   m_ViewID:
     m_ID: 0
     m_Type: 0

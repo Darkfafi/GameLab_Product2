@@ -17,11 +17,11 @@ public class PlayerOne : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Z)) {
-			skillSlots.UseSkillFromSlot(0,GameObject.Find("Player02")); 
+			skillSlots.UseSkillFromSlot(0,GameObject.FindGameObjectsWithTag(Tags.Player2)[Random.Range(0,GameObject.FindGameObjectsWithTag(Tags.Player2).Length)]); //homingSkill
 		} else if (Input.GetKeyDown (KeyCode.X)) {
-			skillSlots.UseSkillFromSlot(1,gameObject.GetComponent<DamageOnTouch>().listOfTargetsToDamage[0]); 
+			skillSlots.UseSkillFromSlot(1,GameObject.FindGameObjectsWithTag(Tags.Player2)[Random.Range(0,GameObject.FindGameObjectsWithTag(Tags.Player2).Length)]); //Projectile ball
 		} else if (Input.GetKeyDown (KeyCode.C)) {
-			skillSlots.UseSkillFromSlot(2,gameObject.GetComponent<DamageOnTouch>().listOfTargetsToDamage[0]); 
+			skillSlots.UseSkillFromSlot(2,gameObject.GetComponent<DamageOnTouch>().listOfTargetsToDamage[0]); //Dash
 		}
 	}
 }
