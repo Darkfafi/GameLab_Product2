@@ -34,6 +34,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			ChangeObjectSpeed(1);
 			_direction = -1;
 		}
+
 		if(Input.GetKey(KeyCode.Space) && _isGrounded)
 			Jump();
 		if(_objectSpeed > 0)
@@ -52,6 +53,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		{
 			_objectSpeed = 0;
 		}
+		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * -antiDirection, transform.localScale.y, transform.localScale.z);
 	}
 	private void Jump()
 	{

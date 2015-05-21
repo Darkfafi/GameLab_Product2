@@ -29,6 +29,7 @@ public class SkillSlots : MonoBehaviour {
 		}
 	}
 	public void UseSkillFromSlot(int slotId,GameObject target = null){
+		Debug.Log (slotId);
 		for (int i = 0; i < _allSlots.Count; i++) {
 			if(_allSlots[i].slotId == slotId){
 				_allSlots[i].UseSkill(target,gameObject);
