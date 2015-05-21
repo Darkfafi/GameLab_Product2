@@ -22,16 +22,20 @@ public class HomingObject : MoveableNetworkEntity {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
+		if(_networkView.isMine)
+		{
+			WhenToFollow();
+		}
+	}
+	private void WhenToFollow()
+	{
 		if (!float.IsNaN(_timeCreated) && !float.IsNaN (_timeTillStartHoming)){
 			if(Time.time > _timeCreated + _timeTillStartHoming){
 				_homing = true;
 				_timeTillStartHoming = float.NaN;
 			}
 		}
-
-		Move();
 	}
-
 	public void SetHomingObject(GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
 		_timeCreated = Time.time;
 		_objectToFollow = objectToFollow;
@@ -40,7 +44,7 @@ public class HomingObject : MoveableNetworkEntity {
 		_objectSpeed = speed;
 	}
 
-	void Move(){
+	protected override void MovementInput(){
 		if (_homing && _objectToFollow != null) {
 			if (_objectSpeed < _speed) {
 				_objectSpeed += _speed * 0.015f;
