@@ -85,14 +85,14 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if(other.transform.tag == Tags.Ground)
+		if(other.transform.tag == Tags.Surface)
 		{
 			_isGrounded = true;
 		}
 	}
 	void OnCollisionExit2D(Collision2D other)
 	{
-		if(other.transform.tag == Tags.Ground)
+		if(other.transform.tag == Tags.Surface)
 		{
 			_isGrounded = false;
 		}
