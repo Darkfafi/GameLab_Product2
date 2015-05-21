@@ -3,11 +3,13 @@ using System.Collections;
 
 public class MoveableNetworkEntity : MonoBehaviour {
 	protected float _speed;
+	protected float _normalSpeed;
 	protected float _objectSpeed;
 	protected Rigidbody2D _rigidBody;
 	protected bool _isGrounded;
 	protected NetworkView _networkView;
 
+	private bool _isGettingPulled = false;
 	private float _lastSynchronizationTime = 0f;
 	private float _syncDelay = 0f;
 	private float _syncTime = 0f;
@@ -28,7 +30,7 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		Vector3 syncPosition = Vector3.zero;
 		Vector3 syncVelocity = Vector3.zero;
 		Quaternion syncRotation = Quaternion.identity;;
-		if (stream.isWriting)
+		if (stream.isWriting) //write new values into stream for other players.
 		{
 			syncPosition = _rigidBody.position;
 			stream.Serialize(ref syncPosition);
@@ -39,19 +41,22 @@ public class MoveableNetworkEntity : MonoBehaviour {
 			syncRotation = transform.rotation;
 			stream.Serialize(ref syncRotation);
 		}
-		else
+		else //stream values for other players so they can sync the variables.
 		{
 			stream.Serialize(ref syncPosition);
 			stream.Serialize(ref syncVelocity);
 			stream.Serialize(ref syncRotation);
-			
+
+			//calculate delay in ms.
 			_syncTime = 0f;
 			_syncDelay = Time.time - _lastSynchronizationTime;
 			_lastSynchronizationTime = Time.time;
-			
+
+			//calculate end position for current entity.
 			_syncEndPosition = syncPosition + syncVelocity * _syncDelay;
 			_syncStartPosition = _rigidBody.position;
-			
+
+			//check new rotation.
 			_syncEndRotation = syncRotation;
 			_syncStartRotation = transform.rotation;
 		}
@@ -74,14 +79,39 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	}
 	protected virtual void MovementInput()
 	{
-		
+		//pull down object
+		if(_isGettingPulled)
+		{
+			_rigidBody.velocity -= new Vector2(0,-1) * _speed * Time.deltaTime;
+		}
 	}
+	//sync movement for other players.
 	private void SyncedMovement()
 	{
 		_syncTime += Time.deltaTime;
 		_rigidBody.position = Vector3.Lerp(_syncStartPosition, _syncEndPosition, _syncTime / _syncDelay);
 		
 		transform.rotation = Quaternion.Slerp(_syncStartRotation, _syncEndRotation, _syncTime / _syncDelay);
+	}
+	public void SetSpeed(float strenght,float duration = 0)
+	{
+		_speed -= strenght;
+
+		if(duration != 0)
+			Invoke("ResetSpeed",duration);
+	}
+	public void PullDown(float duration)
+	{
+		_isGettingPulled = true;
+		Invoke ("StopPullingDown", duration);
+	}
+	private void StopPullingDown()
+	{
+		_isGettingPulled = false;
+	}
+	private void ResetSpeed()
+	{
+		_speed = _normalSpeed;
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
@@ -106,5 +136,4 @@ public class MoveableNetworkEntity : MonoBehaviour {
 			_syncStartPosition = value;
 		}
 	}
-
 }

@@ -12,6 +12,7 @@ public class MoveToTouch : MoveableNetworkEntity {
 	{
 		base.Start ();
 		_speed = 3;
+		_normalSpeed = _speed;
 	}
 
 	protected override void Update ()
