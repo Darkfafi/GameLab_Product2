@@ -13,6 +13,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	{
 		base.Start ();
 		_speed = 3;
+		_normalSpeed = _speed;
 		_jumpForce = 5;
 		_rotationSpeed = 0.5f;
 		_rotationSpeed = 25;
