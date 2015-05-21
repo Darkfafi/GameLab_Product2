@@ -7,7 +7,8 @@ public class PlayerOne : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		gameObject.AddComponent<MoveByKeyboard> ();
+		MoveByKeyboard newMoveByKeyboard = gameObject.AddComponent<MoveByKeyboard> ();
+		GetComponent<NetworkView>().observed = newMoveByKeyboard;
 
 		skillSlots = gameObject.AddComponent<SkillSlots> ();
 		ISkill homingSkill = new ShootHomingProjectileSkill ();
