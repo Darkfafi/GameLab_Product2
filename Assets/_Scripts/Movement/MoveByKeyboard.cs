@@ -8,7 +8,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	private float _jumpForce;
 	private int _direction;
 	private PlayerGravity _playerGravity;
-	private bool _justJumped;
 	protected override void Start ()
 	{
 		base.Start ();
@@ -53,7 +52,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		Vector3 movement = new Vector3(VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).x,VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).y,0);
 		_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
 
-		if(_justJumped && Time.time >= _currentRotationCooldown)
+		if(!_isGrounded && Time.time >= _currentRotationCooldown)
 		{
 			Vector3 newEuler = transform.eulerAngles;
 			newEuler.z = 0;
@@ -61,7 +60,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			if(transform.eulerAngles.z < 0.1f && transform.eulerAngles.z > -0.1f)
 			{
 				transform.eulerAngles = newEuler;
-				_justJumped = false;
 				_playerGravity.CheckGravity();
 			}
 		}
@@ -83,7 +81,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	{
 		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(Vector2.up,transform.eulerAngles.z) * _jumpForce;
 		_playerGravity.currentGravity = new Vector2(0,-0.2f);
-		_justJumped = true;
 		_currentRotationCooldown = _rotationCooldown + Time.time;
 	}
 }
