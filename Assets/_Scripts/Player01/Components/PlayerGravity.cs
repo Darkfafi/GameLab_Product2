@@ -35,4 +35,13 @@ public class PlayerGravity : MonoBehaviour {
 			break;
 		}
 	}
+	public Vector2 currentGravity
+	{
+		set {
+			_currentGravity = value;
+		}
+		get {
+			return _currentGravity;
+		}
+	}
 }

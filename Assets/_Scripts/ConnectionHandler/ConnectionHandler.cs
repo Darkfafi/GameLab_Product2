@@ -5,11 +5,14 @@ using UnityEngine.UI;
 public class ConnectionHandler : MonoBehaviour {
 	private const string _typeName = "Join Me!";
 	private const string _gameName = "Join Me!";
+
 	private string _remoteIP = "172.17.56.249";
 	private int _remotePort = 25000;
 	private int _maxPlayers = 2;
 	private HostData[] _hostList;
 	private NetworkView _networkView;
+	private UserInfo _myUserInfo;
+	private bool _pickedUserName = false;
 	private bool _inGameRoom;
 
 	public Text informationText;
@@ -19,6 +22,7 @@ public class ConnectionHandler : MonoBehaviour {
 
 	void Awake()
 	{
+		_myUserInfo = GetComponent<UserInfo>();
 		_networkView = GetComponent<NetworkView>();
 	}
 
@@ -34,18 +38,26 @@ public class ConnectionHandler : MonoBehaviour {
 	{
 		if (!Network.isClient && !Network.isServer)
 		{
-			if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Server"))
-				StartServer();
-			
-			if (GUI.Button(new Rect(Screen.width/2, Screen.height/2+100, 250, 100), "Refresh Hosts"))
-				RefreshHostList();
-			
-			if (_hostList != null)
+			if(!_pickedUserName)
 			{
-				for (int i = 0; i < _hostList.Length; i++)
+				_myUserInfo.username = GUI.TextField(new Rect(Screen.width/2,Screen.height/2,100,50), _myUserInfo.username);
+				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Play Game"))
+					_pickedUserName = true;
+			} else
+			{
+				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Server"))
+					StartServer();
+				
+				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2+100, 250, 100), "Refresh Hosts"))
+					RefreshHostList();
+				
+				if (_hostList != null)
 				{
-					if (GUI.Button(new Rect(Screen.width/2 + 200, 100 + (110 * i), 100, 50), _hostList[i].gameName))
-						JoinServer(_hostList[i]);
+					for (int i = 0; i < _hostList.Length; i++)
+					{
+						if (GUI.Button(new Rect(Screen.width/2 + 200, 100 + (110 * i), 100, 50), _hostList[i].gameName))
+							JoinServer(_hostList[i]);
+					}
 				}
 			}
 		}
