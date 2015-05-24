@@ -456,60 +456,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &1155574180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1155574182}
-  - 212: {fileID: 1155574181}
-  m_Layer: 0
-  m_Name: ArtPlayer01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1155574181
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1155574180}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed2f3ccde8628a148b0629b75108fb4e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!4 &1155574182
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1155574180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1540908672}
-  m_RootOrder: 0
 --- !u!1 &1219591654
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   informationText: {fileID: 0}
+  hostButton: {fileID: 0}
+  menuCanvas: {fileID: 0}
   player01Prefab: {fileID: 190938, guid: d397da896ab92b94f879dbe280952d57, type: 2}
   player02Prefab: {fileID: 188034, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
   currentCamera: {fileID: 0}
@@ -566,10 +514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: username
---- !u!4 &1540908672 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 459888, guid: d397da896ab92b94f879dbe280952d57, type: 2}
-  m_PrefabInternal: {fileID: 1942202201}
 --- !u!1 &1589395121
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +629,6 @@ Prefab:
       propertyPath: m_ViewID.m_Type
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 21206914, guid: d397da896ab92b94f879dbe280952d57, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d397da896ab92b94f879dbe280952d57, type: 2}
   m_IsPrefabParent: 0
