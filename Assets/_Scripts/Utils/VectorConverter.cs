@@ -11,13 +11,13 @@ public class VectorConverter {
 				calclatedVector = vectorDirection;
 				break;
 			case "90":
-				calclatedVector = new Vector2(calclatedVector.y,-calclatedVector.x);
+				calclatedVector = new Vector2(-calclatedVector.y,calclatedVector.x);
 				break;
 			case "180":
 				calclatedVector = -vectorDirection;
 				break;
 			case "270":
-				calclatedVector = new Vector2(-calclatedVector.y,calclatedVector.x);
+				calclatedVector = new Vector2(calclatedVector.y,-calclatedVector.x);
 				break;
 		}
 		return calclatedVector;

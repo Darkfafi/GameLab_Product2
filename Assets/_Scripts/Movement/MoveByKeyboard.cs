@@ -32,13 +32,11 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			ChangeObjectSpeed(-1);
-			_direction = 1;
 		}
 
 		if (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.LeftArrow))
 		{
 			ChangeObjectSpeed(1);
-			_direction = -1;
 		}
 
 		if(Input.GetKey(KeyCode.Space) && _isGrounded)
@@ -49,18 +47,25 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			_objectSpeed -= 0.085f;
 		}
 
-		Vector3 movement = new Vector3(VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).x,VectorConverter.GetRotationSyncVector(new Vector2(1, 0), transform.eulerAngles.z).y,0);
-		_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
-
-		if(!_isGrounded && Time.time >= _currentRotationCooldown)
+		if (_isGrounded || transform.eulerAngles.z == 0) {
+			Vector3 movement = new Vector3 (VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).x, VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).y, 0);
+			_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
+		}
+		if(!_isGrounded && Time.time >= _currentRotationCooldown && !float.IsNaN(_currentRotationCooldown))
 		{
 			Vector3 newEuler = transform.eulerAngles;
-			newEuler.z = 0;
+			if(transform.eulerAngles.z - 180 <= 0){
+				newEuler.z = 0;
+			}else{
+				newEuler.z = 360;
+			}
+			Debug.Log(transform.eulerAngles.z);
 			transform.eulerAngles = Vector3.Slerp(transform.eulerAngles,newEuler, _rotationSpeed * Time.deltaTime);
 			if(transform.eulerAngles.z < 0.1f && transform.eulerAngles.z > -0.1f)
 			{
 				transform.eulerAngles = newEuler;
-				_playerGravity.CheckGravity();
+				_playerGravity.CheckGravity(gameObject.transform.rotation.eulerAngles.z);
+				_currentRotationCooldown = float.NaN;
 			}
 		}
 	}
@@ -75,12 +80,13 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		{
 			_objectSpeed = -_objectSpeed; //ads a bit off slip / feel to it.
 		}
+		_direction = -antiDirection;
 		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * -antiDirection, transform.localScale.y, transform.localScale.z);
 	}
 	private void Jump()
 	{
 		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(Vector2.up,transform.eulerAngles.z) * _jumpForce;
 		_playerGravity.currentGravity = new Vector2(0,-0.2f);
-		_currentRotationCooldown = _rotationCooldown + Time.time;
+		 _currentRotationCooldown = _rotationCooldown + Time.time;
 	}
 }

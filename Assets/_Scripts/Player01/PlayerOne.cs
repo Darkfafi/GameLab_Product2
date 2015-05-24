@@ -42,7 +42,7 @@ public class PlayerOne : MonoBehaviour {
 	{
 		if(other.transform.tag == Tags.Surface)
 		{
-			ChangeRotation(other.transform.eulerAngles.z);
+			ChangeRotation(Mathf.FloorToInt(other.transform.eulerAngles.z));
 		}
 	}
 	private void ChangeRotation(float zRotation)
@@ -50,6 +50,6 @@ public class PlayerOne : MonoBehaviour {
 		Vector3 newEulerAngles = this.transform.eulerAngles;
 		newEulerAngles.z = zRotation;
 		transform.eulerAngles = newEulerAngles;
-		_playerGravity.CheckGravity();
+		_playerGravity.CheckGravity(zRotation);
 	}
 }

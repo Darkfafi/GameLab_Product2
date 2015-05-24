@@ -18,17 +18,17 @@ public class PlayerGravity : MonoBehaviour {
 	{
 		_rigidBody.velocity += _currentGravity;
 	}
-	public void CheckGravity()
+	public void CheckGravity(float rotationZ)
 	{
-		switch (Mathf.FloorToInt(transform.eulerAngles.z)) {
+		switch (Mathf.FloorToInt(rotationZ)) {
 		case 90:
-			_currentGravity = new Vector2(-_gravity,0);
+			_currentGravity = new Vector2(_gravity,0);
 			break;
 		case 180:
 			_currentGravity = new Vector2(0,_gravity);
 			break;
 		case 270:
-			_currentGravity = new Vector2(_gravity,0);
+			_currentGravity = new Vector2(-_gravity,0);
 			break;
 		default:
 			_currentGravity = new Vector2(0,-_gravity);
