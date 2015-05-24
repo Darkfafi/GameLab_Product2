@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
+	public Text usernameInputText;
+	public GameObject setUsernamePanel;
+
 	private ConnectionHandler _connectionHandler;
 	private UserInfo _userInfo;
 	// Use this for initialization
@@ -11,8 +15,10 @@ public class MainMenu : MonoBehaviour {
 		_userInfo = connector.GetComponent<UserInfo>();
 	}
 	
-	public void SaveUsername(string username)
+	public void SaveUsername()
 	{
-		_userInfo.username = username;
+		_userInfo.username = usernameInputText.text;
+		setUsernamePanel.SetActive(false);
+		_connectionHandler.RefreshHostList();
 	}
 }
