@@ -9,13 +9,17 @@ public class ConnectionHandler : MonoBehaviour {
 	private string _remoteIP = "172.17.56.249";
 	private int _remotePort = 25000;
 	private int _maxPlayers = 2;
+	private int _maxHosts = 10;
 	private HostData[] _hostList;
 	private NetworkView _networkView;
 	private UserInfo _myUserInfo;
 	private bool _pickedUserName = false;
 	private bool _inGameRoom;
+	private GameObject[] allRooms = new GameObject[10];
 
 	public Text informationText;
+	public GameObject hostButton;
+	public GameObject menuCanvas;
 	public GameObject player01Prefab;
 	public GameObject player02Prefab;
 	public GameObject currentCamera;
@@ -43,14 +47,16 @@ public class ConnectionHandler : MonoBehaviour {
 				_myUserInfo.username = GUI.TextField(new Rect(Screen.width/2,Screen.height/2,100,50), _myUserInfo.username);
 				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Play Game"))
 					_pickedUserName = true;
-			} else
+			} 
+			else
 			{
 				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Server"))
 					StartServer();
 				
 				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2+100, 250, 100), "Refresh Hosts"))
 					RefreshHostList();
-				
+
+
 				if (_hostList != null)
 				{
 					for (int i = 0; i < _hostList.Length; i++)
@@ -58,7 +64,7 @@ public class ConnectionHandler : MonoBehaviour {
 						if (GUI.Button(new Rect(Screen.width/2 + 200, 100 + (110 * i), 100, 50), _hostList[i].gameName))
 							JoinServer(_hostList[i]);
 					}
-				}
+				} 
 			}
 		}
 		if(Network.isServer && _inGameRoom)
@@ -85,7 +91,7 @@ public class ConnectionHandler : MonoBehaviour {
 			}
 		}
 	}
-	private void StartServer()
+	public void StartServer()
 	{
 		Network.InitializeServer(_maxPlayers, _remotePort, !Network.HavePublicAddress());
 		MasterServer.RegisterHost(_typeName, _gameName);
@@ -100,16 +106,14 @@ public class ConnectionHandler : MonoBehaviour {
 	void OnServerInitialized()
 	{
 		JoinGameRoom();
-		//SpawnPlayer();
 	}
-	void JoinGameRoom()
+	public void JoinGameRoom()
 	{
 		_inGameRoom = true;
 	}
 	void OnConnectedToServer()
 	{
 		JoinGameRoom();
-		//SpawnPlayer();
 	}
 	void OnDisconnectedFromServer(NetworkDisconnection info) {
 		string information = "";
@@ -154,9 +158,27 @@ public class ConnectionHandler : MonoBehaviour {
 			newPlayer = player02Prefab;
 		GameObject player = Network.Instantiate(newPlayer, new Vector3(0f, 0f, 0f), Quaternion.identity, 0) as GameObject;
 	}
-	private void RefreshHostList()
+	public void RefreshHostList()
 	{
 		MasterServer.RequestHostList(_typeName);
+		foreach(GameObject room in allRooms)
+		{
+			Destroy(room);
+		}
+		if (_hostList != null)
+		{
+			for (int i = 0; i < _hostList.Length; i++)
+			{
+				if(i < _maxHosts)
+				{
+					GameObject newHostButton = Instantiate(hostButton,new Vector3(218f,123f + i*20,0), Quaternion.identity) as GameObject;
+					newHostButton.transform.parent = menuCanvas.transform;
+					newHostButton.GetComponent<Button>().onClick.AddListener(() => { JoinServer(_hostList[i]);});
+					newHostButton.GetComponentInChildren<Text>().text = _hostList[i].gameName;
+					allRooms[i] = newHostButton;
+				}
+			}
+		}
 	}
 	
 	void OnMasterServerEvent(MasterServerEvent msEvent)
