@@ -62,7 +62,7 @@ public class HomingObject : MoveableNetworkEntity {
 			_directionMoving += (steeringForce / _mass);
 
 			//TODO Slow and smooth rotation.
-			transform.eulerAngles = new Vector3 (transform.rotation.x, transform.rotation.y, Mathf.Atan2(desiredStep.y,desiredStep.x) * 180 / Mathf.PI + 90);
+			//transform.eulerAngles = new Vector3 (transform.rotation.x, transform.rotation.y, Mathf.Atan2(desiredStep.y,desiredStep.x) * 180 / Mathf.PI + 90);
 
 		}else {
 			if (_objectSpeed > 0) {

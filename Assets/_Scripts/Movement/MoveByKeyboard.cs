@@ -59,7 +59,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			}else{
 				newEuler.z = 360;
 			}
-			Debug.Log(transform.eulerAngles.z);
 			transform.eulerAngles = Vector3.Slerp(transform.eulerAngles,newEuler, _rotationSpeed * Time.deltaTime);
 			if(transform.eulerAngles.z < 0.1f && transform.eulerAngles.z > -0.1f)
 			{
