@@ -13,6 +13,7 @@ public class Slot {
 
 	public ISkill slotSkill{
 		set{_slotSkill = value;}
+		get{return _slotSkill;}
 	}
 	public int slotId{
 		set{_slotId = value;}
