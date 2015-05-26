@@ -116,9 +116,9 @@ public class ConnectionHandler : MonoBehaviour {
 	}
 
 	[RPC]
-	public void AddNewUser(string ip,string username)
+	public void AddNewUser(int id,string username)
 	{
-		ipWithUsername.Add(ip,username);
+		_idWithUsername.Add(id,username);
 	}
 
 	public void JoinGameRoom()
