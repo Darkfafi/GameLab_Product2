@@ -38,13 +38,14 @@ public class HomingObject : MoveableNetworkEntity {
 			}
 		}
 	}
-	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
+	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,Vector2 startMovingDir,float speed = 2, float timeTillStartHoming = 0){
 		syncStartPosition = startPosition;
 		_timeCreated = Time.time;
 		_objectToFollow = objectToFollow;
 		_speed = speed;
 		_timeTillStartHoming = timeTillStartHoming;
 		_objectSpeed = speed;
+		_directionMoving = startMovingDir;
 	}
 
 	protected override void MovementInput(){
