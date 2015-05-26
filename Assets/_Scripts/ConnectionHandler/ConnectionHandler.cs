@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class ConnectionHandler : MonoBehaviour {
 	private const string _typeName = "Join Me!";
 	private const string _gameName = "Join Me!";
+	private const bool _isTablet = false;
 
 	private string _remoteIP = "172.17.56.249";
 	private int _remotePort = 25000;
@@ -16,6 +18,8 @@ public class ConnectionHandler : MonoBehaviour {
 	private bool _pickedUserName = false;
 	private bool _inGameRoom;
 	private GameObject[] allRooms = new GameObject[10];
+
+	private Dictionary<int,string> _idWithUsername = new Dictionary<int, string>();
 
 	public Text informationText;
 	public GameObject hostButton;
@@ -50,8 +54,11 @@ public class ConnectionHandler : MonoBehaviour {
 			} 
 			else
 			{
-				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Server"))
-					StartServer();
+				if(!_isTablet)
+				{
+					if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Server"))
+						StartServer();
+				}
 				
 				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2+100, 250, 100), "Refresh Hosts"))
 					RefreshHostList();
@@ -84,10 +91,10 @@ public class ConnectionHandler : MonoBehaviour {
 		}
 		else if(Network.isClient && _inGameRoom)
 		{
-			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 100), "Player-1");
+			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 100),_idWithUsername[0]);
 			for (int i = 0; i < Network.connections.Length; i++) 
 			{
-				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + (i+1).ToString());
+				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), _idWithUsername[i]);
 			}
 		}
 	}
@@ -107,9 +114,17 @@ public class ConnectionHandler : MonoBehaviour {
 	{
 		JoinGameRoom();
 	}
+
+	[RPC]
+	public void AddNewUser(int id,string username)
+	{
+		_idWithUsername.Add(id,username);
+	}
+
 	public void JoinGameRoom()
 	{
 		_inGameRoom = true;
+		_networkView.RPC("AddNewUser", RPCMode.Server,_networkView.owner.ipAddress,_myUserInfo.username);
 	}
 	void OnConnectedToServer()
 	{
