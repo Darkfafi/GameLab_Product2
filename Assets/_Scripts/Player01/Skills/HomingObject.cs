@@ -18,7 +18,7 @@ public class HomingObject : MoveableNetworkEntity {
 		base.Start ();
 		_directionMoving = VectorConverter.GetRotationSyncVector (_directionMoving, transform.rotation.eulerAngles.z);
 		if(Network.isServer)
-			Invoke ("DestroyHomingObject", 6f);
+			Invoke ("DestroyNetworkObject", 6f);
 	}
 
 	// Update is called once per frame
@@ -80,11 +80,8 @@ public class HomingObject : MoveableNetworkEntity {
 			if(other.transform.tag == Tags.Player2)
 			{
 				GetComponent<Slime>().SlimePlayer(other.gameObject);
-				DestroyHomingObject();
+				DestroyNetworkObject();
 			}
 		}
-	}
-	void DestroyHomingObject(){
-		Network.Destroy (this.gameObject);
 	}
 }

@@ -136,4 +136,7 @@ public class MoveableNetworkEntity : MonoBehaviour {
 			_syncStartPosition = value;
 		}
 	}
+	public virtual void DestroyNetworkObject(){
+		Network.Destroy (this.gameObject);
+	}
 }
