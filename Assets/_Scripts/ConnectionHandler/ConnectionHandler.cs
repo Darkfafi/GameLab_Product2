@@ -19,7 +19,7 @@ public class ConnectionHandler : MonoBehaviour {
 	private bool _inGameRoom;
 	private GameObject[] allRooms = new GameObject[10];
 
-	private Dictionary<int,string> _idWithUsername = new Dictionary<int, string>();
+	private List<string> allUsernames = new List<string>();
 
 	public Text informationText;
 	public GameObject hostButton;
@@ -74,27 +74,21 @@ public class ConnectionHandler : MonoBehaviour {
 				} 
 			}
 		}
-		if(Network.isServer && _inGameRoom)
+		if(_inGameRoom)
 		{
-			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Player-1");
-			for (int i = 0; i < Network.connections.Length; i++) 
+			for (int i = 0; i < allUsernames.Count; i++) 
 			{
-				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), "Player-" + (i+1).ToString());
+				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), allUsernames[i]);
 			}
-			if(Network.connections.Length > 0)
+			if(Network.isServer)
 			{
-				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game"))
+				if(Network.connections.Length > 0)
 				{
-					_networkView.RPC("StartGame",RPCMode.All);
+					if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game"))
+					{
+						_networkView.RPC("StartGame",RPCMode.All);
+					}
 				}
-			}
-		}
-		else if(Network.isClient && _inGameRoom)
-		{
-			GUI.TextArea(new Rect(Screen.width/2, Screen.height/2, 100, 100),_idWithUsername[0]);
-			for (int i = 0; i < Network.connections.Length; i++) 
-			{
-				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), _idWithUsername[i]);
 			}
 		}
 	}
@@ -116,15 +110,25 @@ public class ConnectionHandler : MonoBehaviour {
 	}
 
 	[RPC]
-	public void AddNewUser(int id,string username)
+	public void AddNewUser(string username)
 	{
-		_idWithUsername.Add(id,username);
+		allUsernames.Add(username);
 	}
-
+	[RPC]
+	public void GetAllUsernames(List<string> usernames)
+	{
+		allUsernames = usernames;
+	}
+	[RPC]
+	public void AskAllUsers()
+	{
+		_networkView.RPC("GetAllUsernames", RPCMode.All, allUsernames);
+	}
 	public void JoinGameRoom()
 	{
 		_inGameRoom = true;
-		_networkView.RPC("AddNewUser", RPCMode.Server,_networkView.owner.ipAddress,_myUserInfo.username);
+		_networkView.RPC("AddNewUser", RPCMode.All,_myUserInfo.username);
+		_networkView.RPC("AskAllUsers", RPCMode.Server);
 	}
 	void OnConnectedToServer()
 	{

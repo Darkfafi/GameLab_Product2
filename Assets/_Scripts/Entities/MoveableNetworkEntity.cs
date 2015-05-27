@@ -10,6 +10,8 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	protected NetworkView _networkView;
 
 	private bool _isGettingPulled = false;
+	private float _pullStrength = 0;
+
 	private float _lastSynchronizationTime = 0f;
 	private float _syncDelay = 0f;
 	private float _syncTime = 0f;
@@ -82,7 +84,7 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		//pull down object
 		if(_isGettingPulled)
 		{
-			_rigidBody.velocity -= new Vector2(0,-1) * _speed * Time.deltaTime;
+			_rigidBody.velocity -= new Vector2(0,-1) * _pullStrength * Time.deltaTime;
 		}
 	}
 	//sync movement for other players.
@@ -100,9 +102,10 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		if(duration != 0)
 			Invoke("ResetSpeed",duration);
 	}
-	public void PullDown(float duration)
+	public void PullDown(float strength, float duration)
 	{
 		_isGettingPulled = true;
+		_pullStrength = strength;
 		Invoke ("StopPullingDown", duration);
 	}
 	private void StopPullingDown()
