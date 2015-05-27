@@ -5,19 +5,19 @@ using System.Collections.Generic;
 
 public class ConnectionHandler : MonoBehaviour {
 	private const string _typeName = "Join Me!";
-	private const string _gameName = "Join Me!";
 	private const bool _isTablet = false;
 
-	private string _remoteIP = "172.17.56.249";
+	private string _gameName = "Server Name";
+	private string _remoteIP = "172.17.58.198";
 	private int _remotePort = 25000;
 	private int _maxPlayers = 2;
-	private int _maxHosts = 10;
+	//private int _maxHosts = 10;
 	private HostData[] _hostList;
 	private NetworkView _networkView;
 	private UserInfo _myUserInfo;
 	private bool _pickedUserName = false;
 	private bool _inGameRoom;
-	private GameObject[] allRooms = new GameObject[10];
+	//private GameObject[] allRooms = new GameObject[10];
 
 	private List<string> allUsernames = new List<string>();
 
@@ -48,30 +48,35 @@ public class ConnectionHandler : MonoBehaviour {
 		{
 			if(!_pickedUserName)
 			{
-				_myUserInfo.username = GUI.TextField(new Rect(Screen.width/2,Screen.height/2,100,50), _myUserInfo.username);
-				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Play Game"))
+				_myUserInfo.username = GUI.TextField(new Rect(Screen.width/2-75,Screen.height/2,150,25), _myUserInfo.username);
+				if (GUI.Button(new Rect(Screen.width/2-75, Screen.height/2-110, 150, 50), "Pick Username"))
 					_pickedUserName = true;
 			} 
 			else
 			{
-				if(!_isTablet)
+				if(!_isTablet) //if it is not a tablet you can make a server.
 				{
-					if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Server"))
-						StartServer();
-				}
-				
-				if (GUI.Button(new Rect(Screen.width/2, Screen.height/2+100, 250, 100), "Refresh Hosts"))
-					RefreshHostList();
-
-
-				if (_hostList != null)
-				{
-					for (int i = 0; i < _hostList.Length; i++)
+					_gameName = GUI.TextField(new Rect(Screen.width/2-75,Screen.height/2,150,25), _gameName);
+					if (GUI.Button(new Rect(Screen.width/2-125, Screen.height/2-150, 250, 100), "Start New Server"))
 					{
-						if (GUI.Button(new Rect(Screen.width/2 + 200, 100 + (110 * i), 100, 50), _hostList[i].gameName))
-							JoinServer(_hostList[i]);
+						StartServer();
 					}
-				} 
+				}
+				else //if it is a tablet try to find servers and display them.
+				{
+					if (GUI.Button(new Rect(Screen.width/2-125, Screen.height/2+100, 250, 100), "Refresh Servers"))
+					{
+						RefreshHostList();
+					}
+					if (_hostList != null)
+					{
+						for (int i = 0; i < _hostList.Length; i++)
+						{
+							if (GUI.Button(new Rect(Screen.width/2 + 100, Screen.height/2 + (50 * i), 100, 50), _hostList[i].gameName))
+								JoinServer(_hostList[i]);
+						}
+					} 
+				}
 			}
 		}
 		if(_inGameRoom)
@@ -87,6 +92,7 @@ public class ConnectionHandler : MonoBehaviour {
 					if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game"))
 					{
 						_networkView.RPC("StartGame",RPCMode.All);
+						MasterServer.UnregisterHost();
 					}
 				}
 			}
@@ -101,7 +107,6 @@ public class ConnectionHandler : MonoBehaviour {
 	private void StartGame()
 	{
 		_inGameRoom = false;
-		MasterServer.UnregisterHost();
 		SpawnPlayer();
 	}
 	void OnServerInitialized()
@@ -115,14 +120,18 @@ public class ConnectionHandler : MonoBehaviour {
 		allUsernames.Add(username);
 	}
 	[RPC]
-	public void GetAllUsernames(List<string> usernames)
+	public void ResetUsernameList()
 	{
-		allUsernames = usernames;
+		allUsernames.Clear();
 	}
 	[RPC]
 	public void AskAllUsers()
 	{
-		_networkView.RPC("GetAllUsernames", RPCMode.All, allUsernames);
+		_networkView.RPC("ResetUsernameList", RPCMode.Others);
+		foreach(string username in allUsernames)
+		{
+			_networkView.RPC("AddNewUser", RPCMode.All, username);
+		}
 	}
 	public void JoinGameRoom()
 	{
@@ -169,17 +178,22 @@ public class ConnectionHandler : MonoBehaviour {
 	{
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
+		if(Network.isServer && Network.connections.Length <= 0)
+		{
+			Network.Disconnect();
+		}
 	}
 	private void SpawnPlayer()
 	{
 		GameObject newPlayer = player01Prefab;
 		if(Network.isClient) 
 			newPlayer = player02Prefab;
-		GameObject player = Network.Instantiate(newPlayer, new Vector3(0f, 0f, 0f), Quaternion.identity, 0) as GameObject;
+		Network.Instantiate(newPlayer, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
 	}
 	public void RefreshHostList()
 	{
 		MasterServer.RequestHostList(_typeName);
+		/*
 		foreach(GameObject room in allRooms)
 		{
 			Destroy(room);
@@ -197,7 +211,7 @@ public class ConnectionHandler : MonoBehaviour {
 					allRooms[i] = newHostButton;
 				}
 			}
-		}
+		} */
 	}
 	
 	void OnMasterServerEvent(MasterServerEvent msEvent)

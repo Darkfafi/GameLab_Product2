@@ -23,6 +23,7 @@ public class Navigation : MonoBehaviour {
 		switch (_currentOption) {
 			case 0:
 				Debug.Log("Start Game");
+				Application.LoadLevel(1);
 			break;
 			case 1:
 				Debug.Log("Show Credits");

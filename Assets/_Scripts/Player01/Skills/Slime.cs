@@ -2,26 +2,19 @@
 using System.Collections;
 
 public class Slime : MonoBehaviour {
-	private float _slowingStrength;
-	private float _pullStrength;
+	private float _strength;
 	private float _duration;
-	private int _slimeStack;
 	void Start()
 	{
-		_slowingStrength = 2;
-		_pullStrength = 2;
+		_strength = 2;
 		_duration = 2;
 	}
-	public void SlimePlayer(GameObject player)
+	public void SlimePlayer(GameObject player, int stackAmount = 1)
 	{
-		_slimeStack++;
-		_slowingStrength *= (float)_slimeStack / 0.5f;
-		_pullStrength *= (float)_slimeStack / 0.5f;
-
-		MoveableNetworkEntity playerNetworkEntity = player.GetComponent<MoveableNetworkEntity>();
-		SlowObject(playerNetworkEntity);
-		PullObject(playerNetworkEntity);
+		Player02 playerScript = player.GetComponent<Player02>();
+		playerScript.GetSlimed(_strength, _duration, stackAmount);
 	}
+	/*
 	private void SlowObject(MoveableNetworkEntity networkEntityToSlow)
 	{
 		networkEntityToSlow.SetSpeed(_slowingStrength, _duration);
@@ -30,4 +23,5 @@ public class Slime : MonoBehaviour {
 	{
 		networkEntityToPull.PullDown(_pullStrength,_duration);
 	}
+	*/
 }

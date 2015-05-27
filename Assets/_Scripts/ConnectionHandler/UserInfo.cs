@@ -2,5 +2,5 @@
 using System.Collections;
 
 public class UserInfo : MonoBehaviour {
-	public string username = "username";
+	public string username = "Username";
 }

@@ -95,18 +95,20 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		
 		transform.rotation = Quaternion.Slerp(_syncStartRotation, _syncEndRotation, _syncTime / _syncDelay);
 	}
-	public void SetSpeed(float strenght,float duration = 0)
+	public void AddSpeed(float strenght,float duration = 0)
 	{
-		_speed -= strenght;
+		_speed += strenght;
 
 		if(duration != 0)
 			Invoke("ResetSpeed",duration);
 	}
-	public void PullDown(float strength, float duration)
+	public void PullDown(float strength, float duration = 0)
 	{
 		_isGettingPulled = true;
 		_pullStrength = strength;
-		Invoke ("StopPullingDown", duration);
+
+		if(duration != 0)
+			Invoke ("StopPullingDown", duration);
 	}
 	private void StopPullingDown()
 	{
