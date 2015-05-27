@@ -30,6 +30,9 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	}
 	
 	protected override void MovementInput(){
+
+		base.MovementInput ();
+
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			ChangeObjectSpeed(-1);

@@ -82,7 +82,8 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		//pull down object
 		if(_isGettingPulled)
 		{
-			_rigidBody.velocity -= new Vector2(0,-1) * _speed * Time.deltaTime;
+			_rigidBody.velocity -= new Vector2(0,1) * _speed * Time.deltaTime;
+
 		}
 	}
 	//sync movement for other players.

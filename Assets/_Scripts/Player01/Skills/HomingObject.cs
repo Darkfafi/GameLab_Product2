@@ -74,13 +74,14 @@ public class HomingObject : MoveableNetworkEntity {
 		}
 		_rigidBody.transform.position += new Vector3 (_directionMoving.x, _directionMoving.y, 0) * _objectSpeed * Time.deltaTime;
 	}
-	void OnCollisionEnter2D(Collision2D other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
+		Debug.Log (other.gameObject.tag);
 		if(Network.isServer)
 		{
-			if(other.transform.tag == Tags.Player2)
+			if(other.gameObject.transform.tag == Tags.Player2)
 			{
-				GetComponent<Slime>().SlimePlayer(other.gameObject);
+				other.gameObject.GetComponent<Slime>().SlimePlayer(other.gameObject);
 				DestroyNetworkObject();
 			}
 		}

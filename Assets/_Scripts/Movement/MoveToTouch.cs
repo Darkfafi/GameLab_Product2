@@ -19,6 +19,8 @@ public class MoveToTouch : MoveableNetworkEntity {
 	}
 	protected override void MovementInput()
 	{
+		base.MovementInput ();
+
 		if (Input.GetMouseButton (0)) {
 			_destination = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			_direction = _destination - new Vector2(_rigidBody.transform.position.x, _rigidBody.transform.position.y);
