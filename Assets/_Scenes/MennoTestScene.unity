@@ -166,6 +166,7 @@ GameObject:
   - 114: {fileID: 269191486}
   - 148: {fileID: 269191487}
   - 114: {fileID: 269191488}
+  - 114: {fileID: 269191489}
   m_Layer: 0
   m_Name: ConnectionHandler
   m_TagString: Connector
@@ -196,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14e5d087a29de445960fbe48e4913c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameName: Server Name
   informationText: {fileID: 123094983}
   hostButton: {fileID: 131978, guid: 997f243e139b2c54782601c318a1521d, type: 2}
   menuCanvas: {fileID: 808023810}
@@ -226,6 +228,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: username
+  isTablet: 0
+--- !u!114 &269191489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 269191484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68196f12dc920654591d369cb33a3793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUsernames: []
+  inGameRoom: 0
 --- !u!1 &556016745
 GameObject:
   m_ObjectHideFlags: 0
