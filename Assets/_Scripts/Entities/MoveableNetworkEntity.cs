@@ -84,7 +84,7 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		//pull down object
 		if(_isGettingPulled)
 		{
-			_rigidBody.velocity -= new Vector2(0,-1) * _pullStrength * Time.deltaTime;
+			_rigidBody.velocity -= new Vector2(0,1) * _pullStrength * Time.deltaTime;
 		}
 	}
 	//sync movement for other players.
@@ -138,5 +138,8 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		set{
 			_syncStartPosition = value;
 		}
+	}
+	public virtual void DestroyNetworkObject(){
+		Network.Destroy (this.gameObject);
 	}
 }

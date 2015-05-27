@@ -4,10 +4,11 @@ using System.Collections;
 public class MoveByKeyboard : MoveableNetworkEntity {
 	private float _rotationSpeed;
 	private float _rotationCooldown;
-	private float _currentRotationCooldown;
+	//private float _currentRotationCooldown;
 	private float _jumpForce;
 	private int _direction;
 	private PlayerGravity _playerGravity;
+	private bool _canRotateAfterJump = false; 
 	protected override void Start ()
 	{
 		base.Start ();
@@ -29,6 +30,9 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	}
 	
 	protected override void MovementInput(){
+
+		base.MovementInput ();
+
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			ChangeObjectSpeed(-1);
@@ -51,7 +55,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			Vector3 movement = new Vector3 (VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).x, VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).y, 0);
 			_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
 		}
-		if(!_isGrounded && Time.time >= _currentRotationCooldown && !float.IsNaN(_currentRotationCooldown))
+		if(!_isGrounded && _canRotateAfterJump)
 		{
 			Vector3 newEuler = transform.eulerAngles;
 			if(transform.eulerAngles.z - 180 <= 0){
@@ -64,7 +68,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			{
 				transform.eulerAngles = newEuler;
 				_playerGravity.CheckGravity(gameObject.transform.rotation.eulerAngles.z);
-				_currentRotationCooldown = float.NaN;
+				//_currentRotationCooldown = float.NaN;
 			}
 		}
 	}
@@ -86,6 +90,11 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	{
 		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(Vector2.up,transform.eulerAngles.z) * _jumpForce;
 		_playerGravity.currentGravity = new Vector2(0,-0.2f);
-		 _currentRotationCooldown = _rotationCooldown + Time.time;
+		_canRotateAfterJump = true;
+		//_currentRotationCooldown = _rotationCooldown + Time.time;
+	}
+	private void HitGround(){
+		Debug.Log(_canRotateAfterJump);
+		_canRotateAfterJump = false;
 	}
 }

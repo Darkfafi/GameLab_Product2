@@ -18,7 +18,7 @@ public class HomingObject : MoveableNetworkEntity {
 		base.Start ();
 		_directionMoving = VectorConverter.GetRotationSyncVector (_directionMoving, transform.rotation.eulerAngles.z);
 		if(Network.isServer)
-			Invoke ("DestroyHomingObject", 6f);
+			Invoke ("DestroyNetworkObject", 6f);
 	}
 
 	// Update is called once per frame
@@ -38,13 +38,14 @@ public class HomingObject : MoveableNetworkEntity {
 			}
 		}
 	}
-	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,float speed = 2, float timeTillStartHoming = 0){
+	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,Vector2 startMovingDir,float speed = 2, float timeTillStartHoming = 0){
 		syncStartPosition = startPosition;
 		_timeCreated = Time.time;
 		_objectToFollow = objectToFollow;
 		_speed = speed;
 		_timeTillStartHoming = timeTillStartHoming;
 		_objectSpeed = speed;
+		_directionMoving = startMovingDir;
 	}
 
 	protected override void MovementInput(){
@@ -62,7 +63,7 @@ public class HomingObject : MoveableNetworkEntity {
 			_directionMoving += (steeringForce / _mass);
 
 			//TODO Slow and smooth rotation.
-			transform.eulerAngles = new Vector3 (transform.rotation.x, transform.rotation.y, Mathf.Atan2(desiredStep.y,desiredStep.x) * 180 / Mathf.PI + 90);
+			//transform.eulerAngles = new Vector3 (transform.rotation.x, transform.rotation.y, Mathf.Atan2(desiredStep.y,desiredStep.x) * 180 / Mathf.PI + 90);
 
 		}else {
 			if (_objectSpeed > 0) {
@@ -73,18 +74,16 @@ public class HomingObject : MoveableNetworkEntity {
 		}
 		_rigidBody.transform.position += new Vector3 (_directionMoving.x, _directionMoving.y, 0) * _objectSpeed * Time.deltaTime;
 	}
-	void OnCollisionEnter2D(Collision2D other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
+		Debug.Log (other.gameObject.tag);
 		if(Network.isServer)
 		{
-			if(other.transform.tag == Tags.Player2)
+			if(other.gameObject.transform.tag == Tags.Player2)
 			{
-				GetComponent<Slime>().SlimePlayer(other.gameObject);
-				DestroyHomingObject();
+				other.gameObject.GetComponent<Slime>().SlimePlayer(other.gameObject);
+				DestroyNetworkObject();
 			}
 		}
-	}
-	void DestroyHomingObject(){
-		Network.Destroy (this.gameObject);
 	}
 }

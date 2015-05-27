@@ -42,6 +42,7 @@ public class PlayerOne : MonoBehaviour {
 	{
 		if(other.transform.tag == Tags.Surface)
 		{
+			SendMessage("HitGround",SendMessageOptions.DontRequireReceiver);
 			ChangeRotation(Mathf.FloorToInt(other.transform.eulerAngles.z));
 		}
 	}
