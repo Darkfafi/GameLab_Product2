@@ -46,7 +46,7 @@ public class Timer : MonoBehaviour {
 			_timeTikCounter += Time.deltaTime;
 			if(_timeTikCounter >= 1){	
 				TimerTik();
-			}
+			} 
 		}
 	}
 	public string GetTimeInHumanTimeString(){
