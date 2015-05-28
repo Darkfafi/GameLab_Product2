@@ -960,8 +960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   informationText: {fileID: 0}
-  hostButton: {fileID: 0}
-  menuCanvas: {fileID: 0}
   player01Prefab: {fileID: 190938, guid: d397da896ab92b94f879dbe280952d57, type: 2}
   player02Prefab: {fileID: 188034, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
   currentCamera: {fileID: 0}
