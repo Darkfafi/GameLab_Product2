@@ -14,6 +14,7 @@ public class GameMenu : MonoBehaviour {
 	void Awake()
 	{
 		_myUserInfo = GetComponent<UserInfo>();
+		_connectionHandler = GetComponent<ConnectionHandler>();
 	}
 	void OnGUI()
 	{
@@ -27,7 +28,7 @@ public class GameMenu : MonoBehaviour {
 			} 
 			else
 			{
-				if(!_myUserInfo.isTablet) //if it is not a tablet you can make a server.
+				if(_myUserInfo.isTablet == false) //if it is not a tablet you can make a server.
 				{
 					_connectionHandler.gameName = GUI.TextField(new Rect(Screen.width/2-75,Screen.height/2,150,25), _connectionHandler.gameName);
 					if (GUI.Button(new Rect(Screen.width/2-125, Screen.height/2-150, 250, 100), "Start New Server"))

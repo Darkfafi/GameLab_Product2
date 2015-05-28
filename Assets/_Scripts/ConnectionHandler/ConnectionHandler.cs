@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class ConnectionHandler : MonoBehaviour {
 	private const string _typeName = "Join Me!";
-	
+
+	private string _gameName = "Server Name";
 	private string _remoteIP = "172.17.58.198";
 	private int _remotePort = 25000;
 	private int _maxPlayers = 2;
@@ -14,7 +15,7 @@ public class ConnectionHandler : MonoBehaviour {
 	private GameMenu _gameMenu;
 	private UserInfo _myUserInfo;
 
-	public string gameName = "Server Name";
+
 	public HostData[] hostList;
 	public Text informationText;
 	public GameObject hostButton;
@@ -22,6 +23,15 @@ public class ConnectionHandler : MonoBehaviour {
 	public GameObject player01Prefab;
 	public GameObject player02Prefab;
 	public GameObject currentCamera;
+
+	public string gameName{
+		set{
+			_gameName = value;
+		}
+		get{
+			return _gameName;
+		}
+	}
 
 	void Awake()
 	{
@@ -75,7 +85,7 @@ public class ConnectionHandler : MonoBehaviour {
 		_networkView.RPC("ResetUsernameList", RPCMode.Others);
 		foreach(string username in _gameMenu.allUsernames)
 		{
-			_networkView.RPC("AddNewUser", RPCMode.All, username);
+			_networkView.RPC("AddNewUser", RPCMode.Others, username);
 		}
 	}
 	public void JoinGameRoom()
@@ -119,6 +129,10 @@ public class ConnectionHandler : MonoBehaviour {
 			Network.DestroyPlayerObjects(player);
 		}
 	}
+	void GoBackToMainMenu()
+	{
+		Application.LoadLevel(0);
+	}
 	void OnPlayerDisconnected(NetworkPlayer player)
 	{
 		Network.RemoveRPCs(player);
@@ -126,6 +140,7 @@ public class ConnectionHandler : MonoBehaviour {
 		if(Network.isServer && Network.connections.Length <= 0)
 		{
 			Network.Disconnect();
+			GoBackToMainMenu();
 		}
 	}
 	private void SpawnPlayer()
