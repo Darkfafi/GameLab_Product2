@@ -27,7 +27,17 @@ public class BouncingObject : MoveableNetworkEntity {
 				transform.localScale = new Vector3(transform.localScale.x - 0.01f,(transform.localScale.y - (0.01f * (Mathf.Abs(transform.localScale.y) / transform.localScale.y))) * -1,transform.localScale.z);
 			}else{
 				if(Network.isServer)
+				{
 					DestroyNetworkObject();
+				}
+			}
+		}
+		if(Network.isServer)
+		{
+			if(other.transform.tag == Tags.Player2)
+			{
+				other.GetComponent<Slime>().SlimePlayer(other.gameObject,_bounceCounter/2);
+				DestroyNetworkObject();
 			}
 		}
 	}

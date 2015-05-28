@@ -76,7 +76,6 @@ public class HomingObject : MoveableNetworkEntity {
 	}
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log (other.gameObject.tag);
 		if(Network.isServer)
 		{
 			if(other.gameObject.transform.tag == Tags.Player2)

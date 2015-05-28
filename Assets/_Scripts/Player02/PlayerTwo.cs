@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player02 : MonoBehaviour {
+public class PlayerTwo : Player {
 	private int _shakeCounter = 10;
 	private float _shakeTimer = 0f;
 	private float _shakeTime = 2.5f;
@@ -10,10 +10,10 @@ public class Player02 : MonoBehaviour {
 	private float _currentStrength;
 	private MoveableNetworkEntity _myMoveScript;
 	// Use this for initialization
-	void Awake () {
+	protected override void Awake () {
+		base.Awake();
 		_myMoveScript = GetComponent<MoveableNetworkEntity>();
 	}
-
 	void OnMouseDown()
 	{
 		Shake();

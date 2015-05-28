@@ -18,8 +18,8 @@ public class ConnectionHandler : MonoBehaviour {
 
 	public HostData[] hostList;
 	public Text informationText;
-	public GameObject hostButton;
-	public GameObject menuCanvas;
+	//public GameObject hostButton;
+	//public GameObject menuCanvas;
 	public GameObject player01Prefab;
 	public GameObject player02Prefab;
 	public GameObject currentCamera;
@@ -114,8 +114,7 @@ public class ConnectionHandler : MonoBehaviour {
 		}
 		DestroyAllNetworkObjects();
 		Debug.Log(information);
-		informationText.text = information;
-		Invoke("ClearInfoText", 1);
+		Application.LoadLevel(1);
 	}
 	void ClearInfoText()
 	{
@@ -124,9 +123,12 @@ public class ConnectionHandler : MonoBehaviour {
 	void DestroyAllNetworkObjects()
 	{
 		Network.DestroyPlayerObjects(Network.player);
-		foreach(NetworkPlayer player in Network.connections)
+		if(Network.isServer)
 		{
-			Network.DestroyPlayerObjects(player);
+			foreach(NetworkPlayer player in Network.connections)
+			{
+				Network.DestroyPlayerObjects(player);
+			}
 		}
 	}
 	void GoBackToMainMenu()
@@ -137,9 +139,12 @@ public class ConnectionHandler : MonoBehaviour {
 	{
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
-		if(Network.isServer && Network.connections.Length <= 0)
+		if(Network.connections.Length <= 1 && Network.isServer)
 		{
 			Network.Disconnect();
+			GoBackToMainMenu();
+		} else if(Network.connections.Length <= 0 && Network.isClient)
+		{
 			GoBackToMainMenu();
 		}
 	}

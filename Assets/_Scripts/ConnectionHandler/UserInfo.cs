@@ -3,9 +3,5 @@ using System.Collections;
 
 public class UserInfo : MonoBehaviour {
 	public string username = "Username";
-	public bool isTablet;
-	void Awake()
-	{
-		isTablet = false;
-	}
+	public bool isTablet = true;
 }
