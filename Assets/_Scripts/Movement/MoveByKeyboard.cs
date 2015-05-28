@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveByKeyboard : MoveableNetworkEntity {
 	private float _rotationSpeed;
-	private float _rotationCooldown;
+	//private float _rotationCooldown;
 	//private float _currentRotationCooldown;
 	private float _jumpForce;
 	private int _direction;
@@ -16,7 +16,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		_normalSpeed = _speed;
 		_jumpForce = 5;
 		_rotationSpeed = 5;
-		_rotationCooldown = 0.25f;
+		//_rotationCooldown = 0.25f;
 		_playerGravity = GetComponent<PlayerGravity>();
 	}
 	
@@ -94,7 +94,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		//_currentRotationCooldown = _rotationCooldown + Time.time;
 	}
 	private void HitGround(){
-		Debug.Log(_canRotateAfterJump);
 		_canRotateAfterJump = false;
 	}
 }

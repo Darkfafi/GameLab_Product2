@@ -888,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14e5d087a29de445960fbe48e4913c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameName: Server Name
   informationText: {fileID: 0}
   hostButton: {fileID: 0}
   menuCanvas: {fileID: 0}
@@ -918,6 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: username
+  isTablet: 0
 --- !u!1 &1374883048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1175,7 @@ Prefab:
     - target: {fileID: 11479504, guid: d397da896ab92b94f879dbe280952d57, type: 2}
       propertyPath: listOfTargetsToDamage.Array.data[0]
       value: 
-      objectReference: {fileID: 188034, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 459888, guid: d397da896ab92b94f879dbe280952d57, type: 2}
       propertyPath: m_LocalScale.x
       value: 1
