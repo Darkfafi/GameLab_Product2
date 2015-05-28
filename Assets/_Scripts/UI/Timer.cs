@@ -56,7 +56,7 @@ public class Timer : MonoBehaviour {
 		int minutesCounter = 0;
 		int secondsCounter = 0;
 
-		while (timeInSeconds > 60) {
+		while (timeInSeconds >= 60) {
 			timeInSeconds -= 60;
 			minutesCounter += 1;
 		}
