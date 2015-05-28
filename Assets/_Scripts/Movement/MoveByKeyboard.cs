@@ -3,8 +3,8 @@ using System.Collections;
 
 public class MoveByKeyboard : MoveableNetworkEntity {
 	private float _rotationSpeed;
-	//private float _rotationCooldown;
-	//private float _currentRotationCooldown;
+	private float _rotationCooldown;
+	private float _currentRotationCooldown;
 	private float _jumpForce;
 	private int _direction;
 	private PlayerGravity _playerGravity;
@@ -15,8 +15,8 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		_speed = 3;
 		_normalSpeed = _speed;
 		_jumpForce = 5;
-		_rotationSpeed = 5;
-		//_rotationCooldown = 0.25f;
+		_rotationSpeed = 4;
+		_rotationCooldown = 0.25f;
 		_playerGravity = GetComponent<PlayerGravity>();
 	}
 	
@@ -55,7 +55,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			Vector3 movement = new Vector3 (VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).x, VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).y, 0);
 			_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
 		}
-		if(!_isGrounded && _canRotateAfterJump)
+		if(!_isGrounded && _canRotateAfterJump && Time.time >= _currentRotationCooldown)
 		{
 			Vector3 newEuler = transform.eulerAngles;
 			if(transform.eulerAngles.z - 180 <= 0){
@@ -91,7 +91,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(Vector2.up,transform.eulerAngles.z) * _jumpForce;
 		_playerGravity.currentGravity = new Vector2(0,-0.2f);
 		_canRotateAfterJump = true;
-		//_currentRotationCooldown = _rotationCooldown + Time.time;
+		_currentRotationCooldown = _rotationCooldown + Time.time;
 	}
 	private void HitGround(){
 		_canRotateAfterJump = false;

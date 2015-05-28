@@ -1,0 +1,341 @@
+fileFormatVersion: 2
+guid: 585ddb7791af1224b91ffd3c00b23287
+timeCreated: 1432806314
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Jump1_0
+    21300002: Jump1_1
+    21300004: Jump1_2
+    21300006: Jump1_3
+    21300008: Jump1_4
+    21300010: Jump1_5
+    21300012: Jump1_6
+    21300014: Jump1_7
+    21300016: Jump1_8
+    21300018: Jump1_9
+    21300020: Jump1_10
+    21300022: Jump1_11
+    21300024: Jump1_12
+    21300026: Jump1_13
+    21300028: Jump1_14
+    21300030: Jump1_15
+    21300032: Jump1_16
+    21300034: Jump1_17
+    21300036: Jump1_18
+    21300038: Jump1_19
+    21300040: Jump1_20
+    21300042: Jump1_21
+    21300044: Jump1_22
+    21300046: Jump1_23
+    21300048: Jump1_24
+    21300050: Jump1_25
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Jump1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_1
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_2
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_3
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_4
+      rect:
+        serializedVersion: 2
+        x: 2296
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_5
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_6
+      rect:
+        serializedVersion: 2
+        x: 3444
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_7
+      rect:
+        serializedVersion: 2
+        x: 4018
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_8
+      rect:
+        serializedVersion: 2
+        x: 4592
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_9
+      rect:
+        serializedVersion: 2
+        x: 5166
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_10
+      rect:
+        serializedVersion: 2
+        x: 5740
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_11
+      rect:
+        serializedVersion: 2
+        x: 6314
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_12
+      rect:
+        serializedVersion: 2
+        x: 6888
+        y: 544
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_14
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_15
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_16
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_17
+      rect:
+        serializedVersion: 2
+        x: 2296
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_18
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_19
+      rect:
+        serializedVersion: 2
+        x: 3444
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_20
+      rect:
+        serializedVersion: 2
+        x: 4018
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_21
+      rect:
+        serializedVersion: 2
+        x: 4592
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_22
+      rect:
+        serializedVersion: 2
+        x: 5166
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_23
+      rect:
+        serializedVersion: 2
+        x: 5740
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_24
+      rect:
+        serializedVersion: 2
+        x: 6314
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jump1_25
+      rect:
+        serializedVersion: 2
+        x: 6888
+        y: 1
+        width: 574
+        height: 543
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
