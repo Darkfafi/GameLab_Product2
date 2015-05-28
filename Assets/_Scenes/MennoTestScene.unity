@@ -197,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14e5d087a29de445960fbe48e4913c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameName: Server Name
   informationText: {fileID: 123094983}
   hostButton: {fileID: 131978, guid: 997f243e139b2c54782601c318a1521d, type: 2}
   menuCanvas: {fileID: 808023810}
@@ -240,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68196f12dc920654591d369cb33a3793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allUsernames: []
   inGameRoom: 0
+  allUsernames: []
 --- !u!1 &556016745
 GameObject:
   m_ObjectHideFlags: 0
