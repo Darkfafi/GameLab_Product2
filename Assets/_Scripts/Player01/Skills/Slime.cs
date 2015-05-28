@@ -11,7 +11,7 @@ public class Slime : MonoBehaviour {
 	}
 	public void SlimePlayer(GameObject player, int stackAmount = 1)
 	{
-		Player02 playerScript = player.GetComponent<Player02>();
+		PlayerTwo playerScript = player.GetComponent<PlayerTwo>();
 		playerScript.GetSlimed(_strength, _duration, stackAmount);
 	}
 	/*
