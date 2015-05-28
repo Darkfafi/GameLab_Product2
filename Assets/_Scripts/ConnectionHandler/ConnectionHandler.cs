@@ -114,7 +114,7 @@ public class ConnectionHandler : MonoBehaviour {
 		}
 		DestroyAllNetworkObjects();
 		Debug.Log(information);
-		Application.LoadLevel(1);
+		ResetScene();
 	}
 	void ClearInfoText()
 	{
@@ -131,9 +131,9 @@ public class ConnectionHandler : MonoBehaviour {
 			}
 		}
 	}
-	void GoBackToMainMenu()
+	void ResetScene()
 	{
-		Application.LoadLevel(0);
+		Application.LoadLevel(1);
 	}
 	void OnPlayerDisconnected(NetworkPlayer player)
 	{
@@ -142,10 +142,10 @@ public class ConnectionHandler : MonoBehaviour {
 		if(Network.connections.Length <= 1 && Network.isServer)
 		{
 			Network.Disconnect();
-			GoBackToMainMenu();
+			ResetScene();
 		} else if(Network.connections.Length <= 0 && Network.isClient)
 		{
-			GoBackToMainMenu();
+			ResetScene();
 		}
 	}
 	private void SpawnPlayer()
