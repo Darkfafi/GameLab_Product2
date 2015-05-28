@@ -18,7 +18,7 @@ public class HomingObject : MoveableNetworkEntity {
 		base.Start ();
 		_directionMoving = VectorConverter.GetRotationSyncVector (_directionMoving, transform.rotation.eulerAngles.z);
 		if(Network.isServer)
-			Invoke ("DestroyNetworkObject", 6f);
+			Invoke ("DestroyNetworkObject", 15f);
 	}
 
 	// Update is called once per frame
@@ -33,10 +33,14 @@ public class HomingObject : MoveableNetworkEntity {
 	{
 		if (!float.IsNaN(_timeCreated) && !float.IsNaN (_timeTillStartHoming)){
 			if(Time.time > _timeCreated + _timeTillStartHoming){
-				_homing = true;
 				_timeTillStartHoming = float.NaN;
+				GetComponent<Animator>().Play("TrackedTarget");
 			}
 		}
+	}
+	private void ActivateHomingObject(){
+		//activated in animation frame
+		_homing = true;
 	}
 	public void SetHomingObject(Vector3 startPosition,GameObject objectToFollow,Vector2 startMovingDir,float speed = 2, float timeTillStartHoming = 0){
 		syncStartPosition = startPosition;

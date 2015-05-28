@@ -664,7 +664,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &916904252
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da9e502364ef8849af5e18ff7b2da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCountDownInSeconds: 5
+  timeToCountDownInSeconds: 600
 --- !u!1 &1097950024
 GameObject:
   m_ObjectHideFlags: 0
