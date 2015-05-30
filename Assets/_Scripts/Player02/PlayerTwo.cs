@@ -9,6 +9,8 @@ public class PlayerTwo : Player {
 	private int _slimeStack;
 	private float _currentStrength;
 	private MoveableNetworkEntity _myMoveScript;
+
+	public bool isDeath = false;
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake();
@@ -57,6 +59,7 @@ public class PlayerTwo : Player {
 	}
 
 	private void NoLivesLeft(){
+		isDeath = true;
 		GetComponent<MoveableNetworkEntity> ().DestroyNetworkObject ();
 	}
 }

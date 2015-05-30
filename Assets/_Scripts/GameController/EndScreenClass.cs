@@ -12,4 +12,17 @@ public class EndScreenClass : MonoBehaviour {
 			winnerText.text += " Winning players: " + winningPlayerUserN;
 		}
 	}
+	void Update()
+	{
+		if(Input.anyKeyDown)
+		{
+			Network.Disconnect();
+			Application.LoadLevel(0);
+		}
+		if(Input.GetMouseButtonDown(0))
+		{
+			Network.Disconnect();
+			Application.LoadLevel(0);
+		}
+	}
 }
