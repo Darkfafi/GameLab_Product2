@@ -15,16 +15,10 @@ public class PlayerTwo : Player {
 	protected override void Awake () {
 		base.Awake();
 		_myMoveScript = GetComponent<MoveableNetworkEntity>();
-		GetComponent<Lives>().DeathEvent += Death;
 	}
 	void OnMouseDown()
 	{
 		Shake();
-	}
-	void Death(int lives)
-	{
-		Destroy(GetComponent<MoveToTouch>());
-		isDeath = true;
 	}
 	public void GetSlimed(float strength, float duration, int stackAmount)
 	{
@@ -65,6 +59,7 @@ public class PlayerTwo : Player {
 	}
 
 	private void NoLivesLeft(){
+		isDeath = true;
 		GetComponent<MoveableNetworkEntity> ().DestroyNetworkObject ();
 	}
 }

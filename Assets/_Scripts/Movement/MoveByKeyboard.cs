@@ -12,6 +12,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	protected override void Start ()
 	{
 		base.Start ();
+		enabled = false;
 		_speed = 3;
 		_normalSpeed = _speed;
 		_jumpForce = 5;

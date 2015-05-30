@@ -28,22 +28,22 @@ public class Lives : MonoBehaviour {
 		if(adjustAble){
 			lives += amount;
 			if(amount < 0){
-				SendMessage("LostLife",SendMessageOptions.DontRequireReceiver);
 				if(LostLifeEvent != null){
 					LostLifeEvent(lives);
 				}
+				SendMessage("LostLife",SendMessageOptions.DontRequireReceiver);
 				if(lives <= 0){
-					SendMessage("NoLivesLeft",SendMessageOptions.DontRequireReceiver);
 					if(DeathEvent != null){
 						DeathEvent(lives);
 					}
+					SendMessage("NoLivesLeft",SendMessageOptions.DontRequireReceiver);
 				}
 				HitLessCountdownStart();
 			}else if(amount > 0){
-				SendMessage("AddedLife",SendMessageOptions.DontRequireReceiver);
 				if(AddedLifeEvent != null){
 					AddedLifeEvent(lives);
 				}
+				SendMessage("AddedLife",SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
