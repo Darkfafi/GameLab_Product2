@@ -40,6 +40,5 @@ public class MoveToTouch : MoveableNetworkEntity {
 		_direction.Normalize ();
 		_direction *= _objectSpeed;
 		_rigidBody.transform.position += new Vector3 (_direction.x, _direction.y, 0) * Time.deltaTime;
-
 	}
 }

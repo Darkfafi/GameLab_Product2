@@ -29,7 +29,7 @@ public class GameMode : MonoBehaviour {
 		GameObject.Find("GameController").GetComponent<GameController>().ShowEndscreen(_gameModeName,"FireFlies",allWinners);
 	}
 
-	public virtual void Start(){
+	public virtual void StartGameMode(){
 		_timer.GetComponent<Timer> ().StartTimer ();
 	}
 }

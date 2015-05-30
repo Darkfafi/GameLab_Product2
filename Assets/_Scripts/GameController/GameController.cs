@@ -15,6 +15,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void StartGame(){
-		GetComponent<GameMode> ().Start();
+		GetComponent<GameMode> ().StartGameMode();
 	}
 }
