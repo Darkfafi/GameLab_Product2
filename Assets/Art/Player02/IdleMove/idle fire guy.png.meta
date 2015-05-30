@@ -1,0 +1,286 @@
+fileFormatVersion: 2
+guid: 859113ab60ab46541909f90b56e8dd35
+timeCreated: 1432985480
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: idle fire guy_0
+    21300002: idle fire guy_1
+    21300004: idle fire guy_2
+    21300006: idle fire guy_3
+    21300008: idle fire guy_4
+    21300010: idle fire guy_5
+    21300012: idle fire guy_6
+    21300014: idle fire guy_7
+    21300016: idle fire guy_8
+    21300018: idle fire guy_9
+    21300020: idle fire guy_10
+    21300022: idle fire guy_11
+    21300024: idle fire guy_12
+    21300026: idle fire guy_13
+    21300028: idle fire guy_14
+    21300030: idle fire guy_15
+    21300032: idle fire guy_16
+    21300034: idle fire guy_17
+    21300036: idle fire guy_18
+    21300038: idle fire guy_19
+    21300040: idle fire guy_20
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: idle fire guy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2184
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_1
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 2184
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_2
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 2184
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_3
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 2184
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_4
+      rect:
+        serializedVersion: 2
+        x: 2696
+        y: 2184
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_5
+      rect:
+        serializedVersion: 2
+        x: 3370
+        y: 2184
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1456
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_7
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 1456
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_8
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 1456
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_9
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 1456
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_10
+      rect:
+        serializedVersion: 2
+        x: 2696
+        y: 1456
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_11
+      rect:
+        serializedVersion: 2
+        x: 3370
+        y: 1456
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 728
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_13
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 728
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_14
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 728
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_15
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 728
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_16
+      rect:
+        serializedVersion: 2
+        x: 2696
+        y: 728
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_17
+      rect:
+        serializedVersion: 2
+        x: 3370
+        y: 728
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_19
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 0
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle fire guy_20
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 0
+        width: 673
+        height: 728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

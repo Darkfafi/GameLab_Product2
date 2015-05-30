@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: c48b9fc238a03cf42afefb4e6be0a701
+timeCreated: 1432985948
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hit fire guy_0
+    21300002: hit fire guy_1
+    21300004: hit fire guy_2
+    21300006: hit fire guy_3
+    21300008: hit fire guy_4
+    21300010: hit fire guy_5
+    21300012: hit fire guy_6
+    21300014: hit fire guy_7
+    21300016: hit fire guy_8
+    21300018: hit fire guy_9
+    21300020: hit fire guy_10
+    21300022: hit fire guy_11
+    21300024: hit fire guy_12
+    21300026: hit fire guy_13
+    21300028: hit fire guy_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: hit fire guy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2832
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_1
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 2832
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_2
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 2832
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2124
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_4
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 2124
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_5
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 2124
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1416
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_7
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 1416
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_8
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 1416
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 708
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_10
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 708
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_11
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 708
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_13
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 0
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hit fire guy_14
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 0
+        width: 702
+        height: 708
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -55,4 +55,8 @@ public class PlayerTwo : Player {
 			_myMoveScript.AddSpeed(-_currentStrength);
 		}
 	}
+
+	private void NoLivesLeft(){
+		GetComponent<MoveableNetworkEntity> ().DestroyNetworkObject ();
+	}
 }

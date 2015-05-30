@@ -8,7 +8,6 @@ public class TimerToText : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		timer.StartTimer ();
 		GetComponent<Text> ().text = timer.GetTimeInHumanTimeString ();
 		timer.GetComponent<Timer> ().OnTikTimerInfoEvent += TimerTik;
 	}

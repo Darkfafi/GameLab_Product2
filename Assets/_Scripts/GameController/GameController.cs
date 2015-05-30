@@ -13,4 +13,8 @@ public class GameController : MonoBehaviour {
 		endScreen.SetActive (true);
 		endScreen.GetComponent<EndScreenClass> ().ChangeText (winningTeam, winnerUsername);
 	}
+
+	public void StartGame(){
+		GetComponent<GameMode> ().Start();
+	}
 }

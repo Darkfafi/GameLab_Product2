@@ -36,19 +36,19 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			ChangeObjectSpeed(-1);
-		}
-
-		if (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.LeftArrow))
+		}else if (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.LeftArrow))
 		{
 			ChangeObjectSpeed(1);
 		}
-
 		if(Input.GetKey(KeyCode.Space) && _isGrounded)
 			Jump();
 
 		if(_objectSpeed > 0)
 		{
 			_objectSpeed -= 0.085f;
+			if(_objectSpeed < 0){
+				_objectSpeed = 0;
+			}
 		}
 
 		if (_isGrounded || transform.eulerAngles.z == 0) {

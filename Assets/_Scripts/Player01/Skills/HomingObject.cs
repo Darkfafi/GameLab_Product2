@@ -13,6 +13,14 @@ public class HomingObject : MoveableNetworkEntity {
 	private float _mass = 3;
 	private Vector2 _directionMoving = new Vector2(0,1);
 
+	private BoxCollider2D collider;
+
+	protected override void Awake ()
+	{
+		base.Awake ();
+		collider = GetComponent<BoxCollider2D> ();
+		collider.enabled = false;
+	}
 	protected override void Start ()
 	{
 		base.Start ();
@@ -34,6 +42,7 @@ public class HomingObject : MoveableNetworkEntity {
 		if (!float.IsNaN(_timeCreated) && !float.IsNaN (_timeTillStartHoming)){
 			if(Time.time > _timeCreated + _timeTillStartHoming){
 				_timeTillStartHoming = float.NaN;
+				collider.enabled = true;
 				GetComponent<Animator>().Play("TrackedTarget");
 			}
 		}
@@ -82,7 +91,7 @@ public class HomingObject : MoveableNetworkEntity {
 	{
 		if(Network.isServer)
 		{
-			if(other.gameObject.transform.tag == Tags.Player2)
+			if(other.gameObject.transform.tag == Tags.Player2 && collider.enabled)
 			{
 				other.gameObject.GetComponent<Slime>().SlimePlayer(other.gameObject);
 				DestroyNetworkObject();

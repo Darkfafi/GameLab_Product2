@@ -8,7 +8,7 @@ public class PlayerOne : Player {
 
 	private PlayerGravity _playerGravity;
 
-	private ISkill[] skillList = new ISkill[]{new ShootHomingProjectileSkill (),new DashSkill (),new ThrowProjectileSkill()};
+	private ISkill[] skillList = new ISkill[]{new ShootHomingProjectileSkill (),new ThrowProjectileSkill(),new DashSkill ()};
 
 	// Use this for initialization
 	protected override void Awake () 
@@ -29,22 +29,30 @@ public class PlayerOne : Player {
 	void Update () {
 		if (_networkView.isMine) {
 			if (Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.J)) {
-				skillSlots.UseSkillFromSlot (0, GameObject.FindGameObjectsWithTag (Tags.Player2) [Random.Range (0, GameObject.FindGameObjectsWithTag (Tags.Player2).Length)]); //homingSkill
+				skillSlots.UseSkillFromSlot (0, GetRandomTarget()); //homingSkill
 			} else if (Input.GetKeyDown (KeyCode.X) || Input.GetKeyDown (KeyCode.K)) {
-				skillSlots.UseSkillFromSlot (1, null); //Projectile ball
+				skillSlots.UseSkillFromSlot (1); //Projectile ball
 			} else if (Input.GetKeyDown (KeyCode.C) || Input.GetKeyDown (KeyCode.L)) {
-				skillSlots.UseSkillFromSlot (2, GameObject.FindGameObjectsWithTag (Tags.Player2) [Random.Range (0, GameObject.FindGameObjectsWithTag (Tags.Player2).Length)]); //Dash
+				skillSlots.UseSkillFromSlot (2, GetRandomTarget()); //Dash
 			}
 			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
 				Vector3 newLocalScale = usernameText.transform.localScale;
 				newLocalScale.x = -0.1f;
 				usernameText.transform.localScale = newLocalScale;
-			} else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+			}else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
 				Vector3 newLocalScale = usernameText.transform.localScale;
 				newLocalScale.x = 0.1f;
 				usernameText.transform.localScale = newLocalScale;
 			}
 		}
+	}
+
+	private GameObject GetRandomTarget(){
+		GameObject target = null;
+		if (GameObject.FindGameObjectsWithTag (Tags.Player2).Length > 0) {
+			target = GameObject.FindGameObjectsWithTag (Tags.Player2) [Random.Range (0, GameObject.FindGameObjectsWithTag (Tags.Player2).Length)];
+		}
+		return target;
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
