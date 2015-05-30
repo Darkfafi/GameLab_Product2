@@ -9,14 +9,22 @@ public class PlayerTwo : Player {
 	private int _slimeStack;
 	private float _currentStrength;
 	private MoveableNetworkEntity _myMoveScript;
+
+	public bool isDeath = false;
 	// Use this for initialization
 	protected override void Awake () {
 		base.Awake();
 		_myMoveScript = GetComponent<MoveableNetworkEntity>();
+		GetComponent<Lives>().DeathEvent += Death;
 	}
 	void OnMouseDown()
 	{
 		Shake();
+	}
+	void Death(int lives)
+	{
+		Destroy(GetComponent<MoveToTouch>());
+		isDeath = true;
 	}
 	public void GetSlimed(float strength, float duration, int stackAmount)
 	{
