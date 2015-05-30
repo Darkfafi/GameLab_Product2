@@ -3,45 +3,60 @@ using System.Collections;
 
 public class Survival : GameMode 
 {
-	protected virtual void Start()
+	public override void StartGameMode()
 	{
-		base.Start();
+		base.StartGameMode();
 		foreach (var fly in _allFlies) {
 			fly.GetComponent<Lives>().DeathEvent += CheckFlies;
 		}
 	}
 	private void CheckFlies(int lives) //Win condition player one
 	{
-		string allWinners = "";
-		bool stopGame = true;
-		foreach (var flyScript in _playerTwoScripts) {
-			if(!flyScript.isDeath)
-			{
-				stopGame = false;
-				break;
-			}
-		}
-		if(stopGame)
+		Debug.Log("Stuur dit");
+		if(Network.isServer)
 		{
-			allWinners = _playerOne.usernameText.text;
-			EndGame("Surival",GameMode.TEAMONE,allWinners);
+			string allWinners = "";
+			bool stopGame = true;
+			foreach (var flyScript in _playerTwoScripts) {
+				if(!flyScript.isDeath)
+				{
+					stopGame = false;
+					break;
+				}
+			}
+			if(stopGame)
+			{
+				allWinners = _playerOne.usernameText.text;
+				if(!_gameEnded)
+				{
+					_networkView.RPC("EndGame",RPCMode.All,"Surival",GameMode.TEAMONE,allWinners);
+					_gameEnded = true;
+				}
+			}
 		}
 	}
 	protected override void EndTimer () //Win condition team two
 	{
 		base.EndTimer ();
-		string allWinners = "";
-		for (int i = 0; i < _playerTwoScripts.Count; i++) 
+		if(Network.isServer)
 		{
-			if(i < _playerTwoScripts.Count)
+			string allWinners = "";
+			for (int i = 0; i < _playerTwoScripts.Count; i++) 
 			{
-				allWinners += _playerTwoScripts[i].usernameText.text + ",";
+				if(i < _playerTwoScripts.Count)
+				{
+					allWinners += _playerTwoScripts[i].usernameText.text + ",";
+				}
+				else
+				{
+					allWinners += _playerTwoScripts[i].usernameText.text;
+				}
 			}
-			else
+			if(!_gameEnded)
 			{
-				allWinners += _playerTwoScripts[i].usernameText.text;
+				_networkView.RPC("EndGame",RPCMode.All,"Surival",GameMode.TEAMTWO,allWinners);
+				_gameEnded = true;
 			}
 		}
-		EndGame("Surival",GameMode.TEAMTWO,allWinners);
 	}
 }

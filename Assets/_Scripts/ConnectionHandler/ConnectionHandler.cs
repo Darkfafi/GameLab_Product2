@@ -4,10 +4,10 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class ConnectionHandler : MonoBehaviour {
-	private const string _typeName = "Join Me!";
+	private const string _typeName = "Survival";
 
 	private string _gameName = "Server Name";
-	private string _remoteIP = "172.17.58.198";
+	private string _remoteIP = "192.168.1.11";
 	private int _remotePort = 25000;
 	private int _maxPlayers = 2;
 	//private int _maxHosts = 10;
@@ -54,10 +54,15 @@ public class ConnectionHandler : MonoBehaviour {
 		MasterServer.RegisterHost(_typeName, gameName);
 	}
 	[RPC]
-	private void StartGame()
+	private void SpawnAllPlayers()
 	{
 		_gameMenu.inGameRoom = false;
 		SpawnPlayer();
+		Invoke ("StartGame", 3f);
+	}
+	private void StartGame()
+	{
+		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>().StartGame();
 	}
 	void OnServerInitialized()
 	{
@@ -65,7 +70,7 @@ public class ConnectionHandler : MonoBehaviour {
 	}
 	public void StartGameClicked()
 	{
-		_networkView.RPC("StartGame",RPCMode.All);
+		_networkView.RPC("SpawnAllPlayers",RPCMode.All);
 		MasterServer.UnregisterHost();
 	}
 
@@ -151,9 +156,13 @@ public class ConnectionHandler : MonoBehaviour {
 	private void SpawnPlayer()
 	{
 		GameObject newPlayer = player01Prefab;
+		Vector3 spawnPosition = new Vector3(0,-3.6f,0);
 		if(Network.isClient) 
+		{
 			newPlayer = player02Prefab;
-		Network.Instantiate(newPlayer, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+			spawnPosition = new Vector3(Random.Range(-5f,5f),3.6f,0);
+		}
+		Network.Instantiate(newPlayer, spawnPosition, Quaternion.identity, 0);
 	}
 	public void RefreshHostList()
 	{
