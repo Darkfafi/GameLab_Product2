@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-	public Text usernameText;
+	public string usernameText;
 	
 	protected NetworkView _networkView;
 
@@ -21,6 +21,6 @@ public class Player : MonoBehaviour {
 	[RPC]
 	private void ShowMyUsername(string username)
 	{
-		usernameText.text = username;
+		usernameText = username;
 	}
 }

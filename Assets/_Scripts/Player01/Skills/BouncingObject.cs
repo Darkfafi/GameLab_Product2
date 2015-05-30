@@ -4,7 +4,7 @@ using System.Collections;
 public class BouncingObject : MoveableNetworkEntity {
 	
 	private Vector2 _movingDirection;
-	private int _bounceCounter = 0;
+	private int _bounceCounter = 1;
 
 	public void SetBounceObject(Vector2 moveDirection,float speed){
 		_movingDirection = moveDirection;
@@ -36,7 +36,7 @@ public class BouncingObject : MoveableNetworkEntity {
 		{
 			if(other.transform.tag == Tags.Player2)
 			{
-				other.GetComponent<Slime>().SlimePlayer(other.gameObject,_bounceCounter/2);
+				other.gameObject.GetComponent<Slime>().SlimePlayer(other.gameObject,Mathf.FloorToInt(3 / (_bounceCounter * 0.5f)));
 				DestroyNetworkObject();
 			}
 		}

@@ -18,13 +18,13 @@ public class GameMode : MonoBehaviour {
 		{
 			if(i < allFlies.Length)
 			{
-				allWinners += allFlies[i].GetComponent<Player>().usernameText.text + ",";
+				allWinners += allFlies[i].GetComponent<Player>().usernameText + ",";
 			}
 			else
 			{
-				allWinners += allFlies[i].GetComponent<Player>().usernameText.text;
+				allWinners += allFlies[i].GetComponent<Player>().usernameText;
 			}
-			Debug.Log(allFlies[i].GetComponent<Player>().usernameText.text);
+			Debug.Log(allFlies[i].GetComponent<Player>().usernameText);
 		}
 		GameObject.Find("GameController").GetComponent<GameController>().ShowEndscreen(_gameModeName,"FireFlies",allWinners);
 	}

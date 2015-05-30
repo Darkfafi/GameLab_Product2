@@ -35,15 +35,6 @@ public class PlayerOne : Player {
 			} else if (Input.GetKeyDown (KeyCode.C) || Input.GetKeyDown (KeyCode.L)) {
 				skillSlots.UseSkillFromSlot (2, GetRandomTarget()); //Dash
 			}
-			if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-				Vector3 newLocalScale = usernameText.transform.localScale;
-				newLocalScale.x = -0.1f;
-				usernameText.transform.localScale = newLocalScale;
-			}else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-				Vector3 newLocalScale = usernameText.transform.localScale;
-				newLocalScale.x = 0.1f;
-				usernameText.transform.localScale = newLocalScale;
-			}
 		}
 	}
 

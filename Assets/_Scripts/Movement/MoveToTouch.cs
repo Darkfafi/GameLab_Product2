@@ -24,7 +24,16 @@ public class MoveToTouch : MoveableNetworkEntity {
 		if (Input.GetMouseButton (0)) {
 			_destination = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			_direction = _destination - new Vector2(_rigidBody.transform.position.x, _rigidBody.transform.position.y);
+			int scaleDir = -1;
+
+			if(_direction.x < 0){
+				scaleDir = 1;
+			}else if(_direction.x > 0){
+				scaleDir = -1;
+			}
 			
+			_rigidBody.transform.localScale = new Vector3 (Mathf.Abs(_rigidBody.transform.localScale.x) * scaleDir,_rigidBody.transform.localScale.y,_rigidBody.transform.localScale.z);
+
 			if(_direction.magnitude > _speed / 2 || _objectSpeed <= 0 && _direction.magnitude > 0.6f){
 				_objectSpeed = _speed;
 			}
