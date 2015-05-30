@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerTwo : Player {
 	private int _shakeCounter = 10;
 	private float _shakeTimer = 0f;
-	private float _shakeTime = 2.5f;
+	private float _shakeTime = 1f;
 
 	private int _slimeStack;
 	private float _currentStrength;
