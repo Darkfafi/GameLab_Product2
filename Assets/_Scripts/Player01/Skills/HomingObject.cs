@@ -43,9 +43,14 @@ public class HomingObject : MoveableNetworkEntity {
 			if(Time.time > _timeCreated + _timeTillStartHoming){
 				_timeTillStartHoming = float.NaN;
 				collider.enabled = true;
-				GetComponent<Animator>().Play("TrackedTarget");
+				_networkView.RPC("SetAnimation",RPCMode.All,"TrackedTarget");
 			}
 		}
+	}
+	[RPC]
+	private void SetAnimation(string animName)
+	{
+		GetComponent<Animator>().Play(animName);
 	}
 	private void ActivateHomingObject(){
 		//activated in animation frame
