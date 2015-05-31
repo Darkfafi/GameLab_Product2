@@ -14,7 +14,7 @@ public class PlayerOne : Player {
 	protected override void Awake () 
 	{
 		base.Awake();
-		MoveByKeyboard newMoveByKeyboard = gameObject.AddComponent<MoveByKeyboard> ();
+		MoveByKeyboard newMoveByKeyboard = gameObject.GetComponent<MoveByKeyboard> ();
 		_networkView.observed = newMoveByKeyboard;
 
 		_playerGravity = GetComponent<PlayerGravity>();

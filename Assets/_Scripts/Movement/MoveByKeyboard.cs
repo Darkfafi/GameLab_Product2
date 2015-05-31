@@ -9,13 +9,16 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	private int _direction;
 	private PlayerGravity _playerGravity;
 	private bool _canRotateAfterJump = false; 
+
+	public bool _inLockAnimation = false;
+
 	protected override void Start ()
 	{
 		base.Start ();
-		enabled = false;
+		//enabled = false;
 		_speed = 3;
 		_normalSpeed = _speed;
-		_jumpForce = 5;
+		_jumpForce = 10;
 		_rotationSpeed = 4;
 		_rotationCooldown = 0.25f;
 		_playerGravity = GetComponent<PlayerGravity>();
@@ -33,17 +36,19 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	protected override void MovementInput(){
 
 		base.MovementInput ();
+		if (!_inLockAnimation) {
+			if (Input.GetKey (KeyCode.D) || Input.GetKey (KeyCode.RightArrow)) {
+				ChangeObjectSpeed (-1);
+			} else if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow)) {
+				ChangeObjectSpeed (1);
+			}
+			if (Input.GetKeyUp (KeyCode.D) || Input.GetKeyUp (KeyCode.RightArrow) || Input.GetKeyUp (KeyCode.A) || Input.GetKeyUp (KeyCode.LeftArrow)) {
+				GetComponentInChildren<Animator> ().Play ("Idle");
+			}
+			if (Input.GetKey (KeyCode.Space) && _isGrounded)
+				Jump ();
 
-		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-		{
-			ChangeObjectSpeed(-1);
-		}else if (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.LeftArrow))
-		{
-			ChangeObjectSpeed(1);
 		}
-		if(Input.GetKey(KeyCode.Space) && _isGrounded)
-			Jump();
-
 		if(_objectSpeed > 0)
 		{
 			_objectSpeed -= 0.085f;
@@ -51,7 +56,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 				_objectSpeed = 0;
 			}
 		}
-
 		if (_isGrounded || transform.eulerAngles.z == 0) {
 			Vector3 movement = new Vector3 (VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).x, VectorConverter.GetRotationSyncVector (new Vector2 (1, 0), transform.eulerAngles.z).y, 0);
 			_rigidBody.transform.position += movement * _objectSpeed * _direction * Time.deltaTime;
@@ -84,17 +88,25 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		{
 			_objectSpeed = -_objectSpeed; //ads a bit off slip / feel to it.
 		}
+		if (_isGrounded) {
+			GetComponentInChildren<Animator> ().Play ("Run");
+		}
 		_direction = -antiDirection;
-		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * -antiDirection, transform.localScale.y, transform.localScale.z);
+		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * antiDirection, transform.localScale.y, transform.localScale.z);
 	}
 	private void Jump()
 	{
-		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(Vector2.up,transform.eulerAngles.z) * _jumpForce;
+		GetComponentInChildren<Animator>().Play("JumpStart");
+	}
+
+	private void JumpForceAdd(){
+		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(new Vector2((Mathf.Abs(transform.localScale.x) / transform.localScale.x) * -Vector2.right.x * 0.7f,Vector2.up.y),transform.eulerAngles.z) * _jumpForce * 1f;
 		_playerGravity.currentGravity = new Vector2(0,-0.2f);
 		_canRotateAfterJump = true;
 		_currentRotationCooldown = _rotationCooldown + Time.time;
 	}
 	private void HitGround(){
 		_canRotateAfterJump = false;
+		GetComponentInChildren<Animator> ().Play ("JumpEnd");
 	}
 }

@@ -328,7 +328,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &611305263
+--- !u!1001 &378339142
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -337,7 +337,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 459888, guid: d397da896ab92b94f879dbe280952d57, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.796999991
+      value: -.219999999
       objectReference: {fileID: 0}
     - target: {fileID: 459888, guid: d397da896ab92b94f879dbe280952d57, type: 2}
       propertyPath: m_LocalPosition.y
