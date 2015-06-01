@@ -43,7 +43,7 @@ public class GameMenu : MonoBehaviour {
 					{
 						for (int i = 0; i < _connectionHandler.hostList.Length; i++)
 						{
-							if (GUI.Button(new Rect(Screen.width/2 + 100, Screen.height/2 + (50 * i), 100, 50), _connectionHandler.hostList[i].gameName))
+							if (GUI.Button(new Rect(Screen.width/2 + 100, Screen.height/2 + (50 * i), 100, 50), _connectionHandler.hostList[i].gameName + " : " + _connectionHandler.hostList[i].connectedPlayers.ToString() + "/4"))
 								_connectionHandler.JoinServer(_connectionHandler.hostList[i]);
 						}
 					} 
