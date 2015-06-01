@@ -10,8 +10,14 @@ public class DashSkill : ISkill {
 		Vector2 dashDirection = VectorConverter.GetRotationSyncVector(Vector2.right * -caster.transform.localScale.x,caster.transform.eulerAngles.z);
 		caster.GetComponent<Rigidbody2D> ().AddForce (dashDirection * dashForce);
 		if (caster.GetComponentInChildren<Animator> () != null) {
-			caster.GetComponentInChildren<Animator>().Play("Dash");
+			caster.GetComponent<NetworkView>().RPC("SetAnimation",RPCMode.All,"Dash",caster.GetComponentInChildren<Animator>());
 		}
+	}
+
+	[RPC]
+	private void SetAnimation(string animName, Animator animator)
+	{
+		animator.Play(animName);
 	}
 
 	public float cooldown{
