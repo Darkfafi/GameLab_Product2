@@ -43,7 +43,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 				ChangeObjectSpeed (1);
 			}
 			if (Input.GetKeyUp (KeyCode.D) || Input.GetKeyUp (KeyCode.RightArrow) || Input.GetKeyUp (KeyCode.A) || Input.GetKeyUp (KeyCode.LeftArrow)) {
-				GetComponentInChildren<Animator> ().Play ("Idle");
+				_networkView.RPC("SetAnimation", RPCMode.All,"Idle");
 			}
 			if (Input.GetKey (KeyCode.Space) && _isGrounded)
 				Jump ();
@@ -89,14 +89,14 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			_objectSpeed = -_objectSpeed; //ads a bit off slip / feel to it.
 		}
 		if (_isGrounded) {
-			GetComponentInChildren<Animator> ().Play ("Run");
+			_networkView.RPC("SetAnimation", RPCMode.All,"Run");
 		}
 		_direction = -antiDirection;
 		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * antiDirection, transform.localScale.y, transform.localScale.z);
 	}
 	private void Jump()
 	{
-		GetComponentInChildren<Animator>().Play("JumpStart");
+		_networkView.RPC("SetAnimation", RPCMode.All,"JumpStart");
 	}
 
 	private void JumpForceAdd(){
@@ -107,6 +107,6 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	}
 	private void HitGround(){
 		_canRotateAfterJump = false;
-		GetComponentInChildren<Animator> ().Play ("JumpEnd");
+		_networkView.RPC("SetAnimation", RPCMode.All,"JumpEnd");
 	}
 }

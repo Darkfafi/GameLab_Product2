@@ -47,11 +47,6 @@ public class HomingObject : MoveableNetworkEntity {
 			}
 		}
 	}
-	[RPC]
-	private void SetAnimation(string animName)
-	{
-		GetComponent<Animator>().Play(animName);
-	}
 	private void ActivateHomingObject(){
 		//activated in animation frame
 		_homing = true;

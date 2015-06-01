@@ -25,7 +25,13 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	{
 		_networkView = this.GetComponent<NetworkView>();
 		_rigidBody = this.GetComponent<Rigidbody2D>();
-		//_animator = this.GetComponent<Animator>();
+		if(this.GetComponent<Animator>())
+		{
+			_animator = this.GetComponent<Animator>();
+		} else if(this.GetComponentInChildren<Animator>())
+		{
+			_animator = this.GetComponentInChildren<Animator>();
+		}
 	}
 	private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
@@ -143,5 +149,10 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	}
 	public virtual void DestroyNetworkObject(){
 		Network.Destroy (this.gameObject);
+	}
+	[RPC]
+	protected void SetAnimation(string animName)
+	{
+		_animator.Play("animName");
 	}
 }
