@@ -36,7 +36,11 @@ public class BouncingObject : MoveableNetworkEntity {
 		{
 			if(other.transform.tag == Tags.Player2)
 			{
-				other.gameObject.GetComponent<Slime>().SlimePlayer(other.gameObject,Mathf.FloorToInt(3 / (_bounceCounter * 0.5f)));
+				int slimeAmount = Mathf.FloorToInt(2 / (_bounceCounter * 0.5f));
+				if(slimeAmount < 1){
+					slimeAmount = 1;
+				}
+				other.gameObject.GetComponent<Slime>().SlimePlayer(other.gameObject,slimeAmount);
 				DestroyNetworkObject();
 			}
 		}

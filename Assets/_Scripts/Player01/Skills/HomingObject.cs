@@ -26,7 +26,7 @@ public class HomingObject : MoveableNetworkEntity {
 		base.Start ();
 		_directionMoving = VectorConverter.GetRotationSyncVector (_directionMoving, transform.rotation.eulerAngles.z);
 		if(Network.isServer)
-			Invoke ("DestroyNetworkObject", 15f);
+			Invoke ("DestroyNetworkObject", 10f);
 	}
 
 	// Update is called once per frame

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ShootHomingProjectileSkill : ISkill {
-	private float _cooldown = 10;
+	private float _cooldown = 12;
 	private float _currentCooldown = 0;
 	public void ActivateSkill(GameObject target, GameObject caster){
 		GameObject missile = Network.Instantiate((GameObject)Resources.Load("Prefabs/Projectiles/HomingMissile"),caster.transform.position,Quaternion.identity, 0) as GameObject;

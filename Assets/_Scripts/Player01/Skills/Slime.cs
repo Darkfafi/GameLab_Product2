@@ -13,7 +13,6 @@ public class Slime : MonoBehaviour {
 	{
 		PlayerTwo playerScript = player.GetComponent<PlayerTwo>();
 		playerScript.GetSlimed(_strength, _duration, stackAmount);
-		Debug.Log("fsafafsf");
 	}
 	/*
 	private void SlowObject(MoveableNetworkEntity networkEntityToSlow)

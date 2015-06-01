@@ -10,7 +10,7 @@ public class MoveToTouch : MoveableNetworkEntity {
 	{
 		base.Start ();
 		enabled = false;
-		_speed = 3;
+		_speed = 4;
 		_normalSpeed = _speed;
 	}
 
@@ -35,8 +35,10 @@ public class MoveToTouch : MoveableNetworkEntity {
 
 			_networkView.RPC("SetScale", RPCMode.All, new Vector3 (Mathf.Abs(_rigidBody.transform.localScale.x) * scaleDir,_rigidBody.transform.localScale.y,_rigidBody.transform.localScale.z));
 
-			if(_direction.magnitude > _speed / 2 || _objectSpeed <= 0 && _direction.magnitude > 0.6f){
-				_objectSpeed = _speed;
+			if(_direction.magnitude > _objectSpeed / 1.5f  && _objectSpeed > 0|| _objectSpeed <= 0 && _direction.magnitude > 0.6f){
+				if(_objectSpeed < _speed){
+					_objectSpeed += 0.18f;
+				}
 			}
 		}
 		

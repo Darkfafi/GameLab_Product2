@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerTwo : Player {
-	private int _shakeCounter = 10;
+	private int _shakeCounter = 5;
 	private float _shakeTimer = 0f;
 	private float _shakeTime = 1f;
 
@@ -23,11 +23,12 @@ public class PlayerTwo : Player {
 	public void GetSlimed(float strength, float duration, int stackAmount)
 	{
 		_slimeStack += stackAmount;
-		_currentStrength = strength * (float)_slimeStack * 0.5f;
+		_currentStrength = strength * (float)_slimeStack * 0.2f;
 		_myMoveScript.PullDown(_currentStrength);
 		_myMoveScript.AddSpeed(-_currentStrength);
 
 		Invoke("ReduceSlime", duration);
+		Debug.Log (_slimeStack);
 	}
 	private void Shake()
 	{
@@ -41,6 +42,8 @@ public class PlayerTwo : Player {
 			ResetShakeCounter();
 			ReduceSlime();
 		}
+		_shakeTimer = Time.time + _shakeTime;
+		Debug.Log (_shakeCounter);
 	}
 	private void ResetShakeCounter()
 	{
@@ -52,9 +55,10 @@ public class PlayerTwo : Player {
 		if(_slimeStack != 0)
 		{
 			_slimeStack--;
-			_currentStrength *= (float)_slimeStack * 0.5f;
+			_currentStrength *= (float)_slimeStack * 0.2f;
 			_myMoveScript.PullDown(_currentStrength);
 			_myMoveScript.AddSpeed(-_currentStrength);
+			Invoke("ReduceSlime",2f);
 		}
 	}
 
