@@ -820,7 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da9e502364ef8849af5e18ff7b2da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCountDownInSeconds: 600
+  timeToCountDownInSeconds: 120
 --- !u!1 &1097950024
 GameObject:
   m_ObjectHideFlags: 0

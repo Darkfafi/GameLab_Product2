@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: username
-  isTablet: 1
+  isTablet: 0
 --- !u!114 &269191489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da9e502364ef8849af5e18ff7b2da66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCountDownInSeconds: 60
+  timeToCountDownInSeconds: 120
 --- !u!114 &332483087
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -128,13 +128,14 @@ public class MoveableNetworkEntity : MonoBehaviour {
 
 		_networkView.RPC("ChangePullDown", RPCMode.Others,_pullStrength,_isGettingPulled);
 
-		if(duration != 0)
+		if (duration != 0 || strength == 0) {
 			Invoke ("StopPullingDown", duration);
+		}
 	}
 	private void StopPullingDown()
 	{
-		_networkView.RPC("ChangePullDown", RPCMode.Others, _pullStrength, _isGettingPulled);
 		_isGettingPulled = false;
+		_networkView.RPC("ChangePullDown", RPCMode.Others, _pullStrength, _isGettingPulled);
 	}
 	private void ResetSpeed()
 	{

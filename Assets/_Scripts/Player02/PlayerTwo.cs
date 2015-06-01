@@ -22,17 +22,22 @@ public class PlayerTwo : Player {
 	}
 	public void GetSlimed(float strength, float duration, int stackAmount)
 	{
-		_slimeStack += stackAmount;
-		_currentStrength = strength * (float)_slimeStack * 0.2f;
-		_myMoveScript.PullDown(_currentStrength);
-		_myMoveScript.AddSpeed(-_currentStrength);
+		if (_slimeStack < 4) {
+			_slimeStack += stackAmount;
+			_currentStrength = strength * (float)_slimeStack * 0.2f;
+			_myMoveScript.PullDown (_currentStrength);
+			_myMoveScript.AddSpeed (-_currentStrength);
 
-		Invoke("ReduceSlime", duration);
-		Debug.Log (_slimeStack);
+			GetComponent<SpriteRenderer> ().color = new Color (1 / (_slimeStack * 0.5f + 1),1, 1 /(_slimeStack * 0.5f + 1));
+
+			_networkView.RPC ("SetAnimation", RPCMode.All, "Hit");
+			Invoke ("ReduceSlime", duration);
+		}
 	}
 	private void Shake()
 	{
 		_shakeCounter--;
+		_networkView.RPC("SetAnimation",RPCMode.All,"Shake");
 		if(_shakeTimer < Time.time)
 		{
 			ResetShakeCounter();
@@ -43,11 +48,10 @@ public class PlayerTwo : Player {
 			ReduceSlime();
 		}
 		_shakeTimer = Time.time + _shakeTime;
-		Debug.Log (_shakeCounter);
 	}
 	private void ResetShakeCounter()
 	{
-		_shakeCounter = 10;
+		_shakeCounter = 5;
 		_shakeTimer = Time.time + _shakeTime;
 	}
 	private void ReduceSlime()
@@ -57,8 +61,9 @@ public class PlayerTwo : Player {
 			_slimeStack--;
 			_currentStrength *= (float)_slimeStack * 0.2f;
 			_myMoveScript.PullDown(_currentStrength);
-			_myMoveScript.AddSpeed(-_currentStrength);
-			Invoke("ReduceSlime",2f);
+			_myMoveScript.AddSpeed(0.2f);
+			GetComponent<SpriteRenderer> ().color = new Color (1 / (_slimeStack * 0.5f + 1),1, 1 /(_slimeStack * 0.5f + 1));
+			Invoke("ReduceSlime",2.5f);
 		}
 	}
 
