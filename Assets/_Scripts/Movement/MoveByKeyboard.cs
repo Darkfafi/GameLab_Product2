@@ -107,6 +107,8 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	}
 	private void HitGround(){
 		_canRotateAfterJump = false;
-		_networkView.RPC("SetAnimation", RPCMode.All,"JumpEnd");
+		if (GetComponentInChildren<Animator> ().GetCurrentAnimatorStateInfo (0).IsName ("Eat") == false) {
+			_networkView.RPC ("SetAnimation", RPCMode.All, "JumpEnd");
+		}
 	}
 }

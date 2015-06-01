@@ -38,6 +38,10 @@ public class PlayerOne : Player {
 		}
 	}
 
+	private void HitObjectToDamage(){
+		_networkView.RPC("SetAnimation",RPCMode.All,"Eat");
+	}
+
 	private GameObject GetRandomTarget(){
 		GameObject target = null;
 		if (GameObject.FindGameObjectsWithTag (Tags.Player2).Length > 0) {

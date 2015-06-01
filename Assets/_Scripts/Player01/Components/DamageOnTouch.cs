@@ -11,6 +11,7 @@ public class DamageOnTouch : MonoBehaviour {
 		{
 			if (ListContainsGameobject(other.gameObject) && other.gameObject.GetComponent<Lives>() != null) {
 				other.gameObject.GetComponent<Lives>().SendAddSubLife(-damageToDeal);
+				SendMessage("HitObjectToDamage");
 			}
 		}
 	}
@@ -20,6 +21,7 @@ public class DamageOnTouch : MonoBehaviour {
 		{
 			if (ListContainsGameobject(other.gameObject) && other.gameObject.GetComponent<Lives>() != null) {
 				other.gameObject.GetComponent<Lives>().SendAddSubLife(-damageToDeal);
+				SendMessage("HitObjectToDamage");
 			}
 		}
 	}
