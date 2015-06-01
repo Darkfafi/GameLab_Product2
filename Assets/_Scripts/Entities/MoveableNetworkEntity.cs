@@ -101,9 +101,22 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		
 		transform.rotation = Quaternion.Slerp(_syncStartRotation, _syncEndRotation, _syncTime / _syncDelay);
 	}
+	[RPC]
+	private void ChangeSpeed(float speed)
+	{
+		_speed = speed;
+	}
+	[RPC]
+	private void ChangePullDown(float strenght,bool isGettingPulled)
+	{
+		_isGettingPulled = isGettingPulled;
+		_pullStrength = strenght;
+	}
 	public void AddSpeed(float strenght,float duration = 0)
 	{
 		_speed += strenght;
+
+		_networkView.RPC("ChangeSpeed", RPCMode.Others,_speed);
 
 		if(duration != 0)
 			Invoke("ResetSpeed",duration);
@@ -113,16 +126,20 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		_isGettingPulled = true;
 		_pullStrength = strength;
 
+		_networkView.RPC("ChangePullDown", RPCMode.Others,_pullStrength,_isGettingPulled);
+
 		if(duration != 0)
 			Invoke ("StopPullingDown", duration);
 	}
 	private void StopPullingDown()
 	{
+		_networkView.RPC("ChangePullDown", RPCMode.Others, _pullStrength, _isGettingPulled);
 		_isGettingPulled = false;
 	}
 	private void ResetSpeed()
 	{
 		_speed = _normalSpeed;
+		_networkView.RPC("ChangeSpeed", RPCMode.Others,_speed);
 	}
 	void OnCollisionStay2D(Collision2D other)
 	{
