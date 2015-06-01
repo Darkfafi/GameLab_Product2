@@ -18,7 +18,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 		enabled = false;
 		_speed = 3;
 		_normalSpeed = _speed;
-		_jumpForce = 10;
+		_jumpForce = 7;
 		_rotationSpeed = 4;
 		_rotationCooldown = 0.25f;
 		_playerGravity = GetComponent<PlayerGravity>();
@@ -100,7 +100,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 	}
 
 	private void JumpForceAdd(){
-		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(new Vector2((Mathf.Abs(transform.localScale.x) / transform.localScale.x) * -Vector2.right.x * 0.7f,Vector2.up.y),transform.eulerAngles.z) * _jumpForce * 1f;
+		_rigidBody.velocity = VectorConverter.GetRotationSyncVector(new Vector2((Mathf.Abs(transform.localScale.x) / transform.localScale.x) * -Vector2.right.x * 0.7f,Vector2.up.y),transform.eulerAngles.z) * _jumpForce;
 		_playerGravity.currentGravity = new Vector2(0,-0.2f);
 		_canRotateAfterJump = true;
 		_currentRotationCooldown = _rotationCooldown + Time.time;

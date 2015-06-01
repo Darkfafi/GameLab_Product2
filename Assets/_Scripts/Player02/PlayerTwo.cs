@@ -60,6 +60,6 @@ public class PlayerTwo : Player {
 
 	private void NoLivesLeft(){
 		isDeath = true;
-		GetComponent<MoveableNetworkEntity> ().DestroyNetworkObject ();
+		//GetComponent<MoveableNetworkEntity> ().DestroyNetworkObject ();
 	}
 }
