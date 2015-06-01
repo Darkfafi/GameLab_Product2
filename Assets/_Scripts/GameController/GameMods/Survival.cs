@@ -39,6 +39,7 @@ public class Survival : GameMode
 				allWinners = _playerOne.usernameText;
 				if(!_gameEnded)
 				{
+					_playerOne.GetComponent<MoveableNetworkEntity>().DestroyNetworkObject();
 					_networkView.RPC("EndGame",RPCMode.All,"Surival",GameMode.TEAMONE,allWinners);
 					_gameEnded = true;
 				}

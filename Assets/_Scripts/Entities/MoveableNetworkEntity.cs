@@ -171,7 +171,6 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	protected void SetAnimation(string animName)
 	{
 		_animator.Play(animName);
-		Debug.Log ("Anim: " + animName);
 	}
 	[RPC]
 	protected void SetScale(Vector3 newScale)
