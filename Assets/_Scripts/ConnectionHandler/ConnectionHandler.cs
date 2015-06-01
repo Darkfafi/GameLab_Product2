@@ -9,7 +9,7 @@ public class ConnectionHandler : MonoBehaviour {
 	private string _gameName = "Server Name";
 	private string _remoteIP = "172.17.56.220";
 	private int _remotePort = 25000;
-	private int _maxPlayers = 2;
+	private int _maxPlayers = 3;
 	//private int _maxHosts = 10;
 	private NetworkView _networkView;
 	private GameMenu _gameMenu;
