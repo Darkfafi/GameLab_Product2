@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Navigation : MonoBehaviour {
 
+	public GameObject credits;
 	public GameObject navText;
 
 	string[] _menuNavList = new string[]{"Start Game","Credits","Exit"};
@@ -26,6 +27,7 @@ public class Navigation : MonoBehaviour {
 				Application.LoadLevel(1);
 			break;
 			case 1:
+				credits.SetActive(true);
 				Debug.Log("Show Credits");
 			break;
 			case 2:

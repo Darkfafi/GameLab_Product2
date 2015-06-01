@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
 			countDownText.text = _counter.ToString();
 			Invoke("CountDown", 1f);
 		} else {
+			countDownText.enabled = false;
 			StartGameMode();
 		}
 	}
