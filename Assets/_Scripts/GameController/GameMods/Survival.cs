@@ -12,7 +12,6 @@ public class Survival : GameMode
 	}
 	private void CheckFlies(int lives) //Win condition player one
 	{
-		Debug.Log("Stuur dit");
 		if(Network.isServer)
 		{
 			string allWinners = "";
