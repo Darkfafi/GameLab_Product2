@@ -153,6 +153,11 @@ public class MoveableNetworkEntity : MonoBehaviour {
 	[RPC]
 	protected void SetAnimation(string animName)
 	{
-		_animator.Play("animName");
+		_animator.Play(animName);
+	}
+	[RPC]
+	protected void ChangeScale(Vector3 newScale)
+	{
+		this.transform.localScale = newScale;
 	}
 }

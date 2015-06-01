@@ -32,8 +32,8 @@ public class MoveToTouch : MoveableNetworkEntity {
 			}else if(_direction.x > 0){
 				scaleDir = -1;
 			}
-			
-			_rigidBody.transform.localScale = new Vector3 (Mathf.Abs(_rigidBody.transform.localScale.x) * scaleDir,_rigidBody.transform.localScale.y,_rigidBody.transform.localScale.z);
+
+			_networkView.RPC("SetScale", RPCMode.All, new Vector3 (Mathf.Abs(_rigidBody.transform.localScale.x) * scaleDir,_rigidBody.transform.localScale.y,_rigidBody.transform.localScale.z));
 
 			if(_direction.magnitude > _speed / 2 || _objectSpeed <= 0 && _direction.magnitude > 0.6f){
 				_objectSpeed = _speed;

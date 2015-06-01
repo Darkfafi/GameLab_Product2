@@ -92,7 +92,7 @@ public class MoveByKeyboard : MoveableNetworkEntity {
 			_networkView.RPC("SetAnimation", RPCMode.All,"Run");
 		}
 		_direction = -antiDirection;
-		transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x) * antiDirection, transform.localScale.y, transform.localScale.z);
+		_networkView.RPC("SetScale", RPCMode.All, new Vector3 (Mathf.Abs(transform.localScale.x) * antiDirection, transform.localScale.y, transform.localScale.z));
 	}
 	private void Jump()
 	{
