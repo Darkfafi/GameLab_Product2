@@ -60,6 +60,11 @@ public class PlayerTwo : Player {
 
 	private void NoLivesLeft(){
 		isDeath = true;
-		//GetComponent<MoveableNetworkEntity> ().DestroyNetworkObject ();
+		_networkView.RPC("DisableMe",RPCMode.All);
+	}
+	[RPC]
+	private void DisableMe()
+	{
+		gameObject.SetActive(false);
 	}
 }
