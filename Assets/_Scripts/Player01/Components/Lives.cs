@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Lives : MonoBehaviour {
 
-	public delegate void IntLifeValueDelegate(int lives);
+	public delegate void IntLifeValueDelegate(int lives, GameObject oneToGetEffected);
 	public event IntLifeValueDelegate LostLifeEvent;
 	public event IntLifeValueDelegate DeathEvent;
 	public event IntLifeValueDelegate AddedLifeEvent;
@@ -29,19 +29,19 @@ public class Lives : MonoBehaviour {
 			lives += amount;
 			if(amount < 0){
 				if(LostLifeEvent != null){
-					LostLifeEvent(lives);
+					LostLifeEvent(lives,this.gameObject);
 				}
 				SendMessage("LostLife",SendMessageOptions.DontRequireReceiver);
 				if(lives <= 0){
 					if(DeathEvent != null){
-						DeathEvent(lives);
+						DeathEvent(lives,this.gameObject);
 					}
 					SendMessage("NoLivesLeft",SendMessageOptions.DontRequireReceiver);
 				}
 				HitLessCountdownStart();
 			}else if(amount > 0){
 				if(AddedLifeEvent != null){
-					AddedLifeEvent(lives);
+					AddedLifeEvent(lives,this.gameObject);
 				}
 				SendMessage("AddedLife",SendMessageOptions.DontRequireReceiver);
 			}

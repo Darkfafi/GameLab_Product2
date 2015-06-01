@@ -46,7 +46,12 @@ public class GameMode : MonoBehaviour {
 		{
 			fly.GetComponent<MoveToTouch>().enabled = true;
 			_allFlies.Add(fly);
+			fly.GetComponent<Lives>().DeathEvent += FlyDied;
 			_playerTwoScripts.Add(fly.GetComponent<PlayerTwo>());
 		}
+	}
+
+	protected virtual void FlyDied(int lives, GameObject fly){
+
 	}
 }

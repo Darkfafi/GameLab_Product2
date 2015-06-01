@@ -60,6 +60,9 @@ public class PlayerTwo : Player {
 
 	private void NoLivesLeft(){
 		isDeath = true;
+
+	}
+	public void RemoveFromGame(){
 		_networkView.RPC("DisableMe",RPCMode.All);
 	}
 	[RPC]
