@@ -44,6 +44,6 @@ public class Survival : GameMode
 				}
 			}
 		}
-		fly.GetComponent<PlayerTwo> ().RemoveFromGame ();
+		fly.GetComponent<PlayerTwo> ().RemoveFromGame();
 	}
 }

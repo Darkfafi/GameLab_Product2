@@ -365,7 +365,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459888, guid: d397da896ab92b94f879dbe280952d57, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 14801502, guid: d397da896ab92b94f879dbe280952d57, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -1251,11 +1251,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403302, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
       propertyPath: m_LocalScale.x
-      value: .200000003
+      value: .150000006
       objectReference: {fileID: 0}
     - target: {fileID: 403302, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
       propertyPath: m_LocalScale.y
-      value: .200000003
+      value: .150000006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a72069522661bb24db83f4befad9eb6a, type: 2}
