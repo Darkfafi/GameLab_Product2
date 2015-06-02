@@ -35,8 +35,6 @@ public class GameMode : MonoBehaviour {
 	{
 		_timer.GetComponent<Timer> ().PauseTimer ();
 		_slime.GetComponent<MoveByKeyboard>().enabled = false;
-		_playerOne = _slime.GetComponent<PlayerOne>();
-		_playerOne.enabled = false;
 
 		foreach(GameObject fly in _allFlies)
 		{
