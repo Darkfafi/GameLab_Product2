@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 		{
 			_myUserInfo = GameObject.FindGameObjectWithTag(Tags.Connector).GetComponent<UserInfo>();
 			_networkView.RPC("ShowMyUsername", RPCMode.All, _myUserInfo.username);
+			Debug.Log(_networkView.viewID);
 		}
 	}
 	[RPC]
