@@ -56,13 +56,13 @@ public class GameMenu : MonoBehaviour {
 		{
 			for (int i = 0; i < allUsernames.Count; i++) 
 			{
-				GUI.TextArea(new Rect(Screen.width/2, Screen.height/2+50+50*i, 100, 50), allUsernames[i], textStyle);
+				GUI.TextArea(new Rect(Screen.width/2-50, Screen.height/2+50+50*i, 100, 50), allUsernames[i], textStyle);
 			}
 			if(Network.isServer)
 			{
 				if(Network.connections.Length > 0)
 				{
-					if (GUI.Button(new Rect(Screen.width/2, Screen.height/2-100, 250, 100), "Start Game", buttonStyle))
+					if (GUI.Button(new Rect(Screen.width/2-125, Screen.height/2-100, 250, 100), "Start Game", buttonStyle))
 					{
 						_connectionHandler.StartGameClicked();
 					}

@@ -5,18 +5,23 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
 	public GameObject endScreen;
-	public Text countDownText;
+	public GameObject countDown;
+	private Text _countDownText;
 	private int _counter = 4;
+	void Awake()
+	{
+		_countDownText = countDown.GetComponentInChildren<Text>();
+	}
 
 	void CountDown()
 	{
 		if(_counter != 0)
 		{
 			_counter--;
-			countDownText.text = _counter.ToString();
+			_countDownText.text = _counter.ToString();
 			Invoke("CountDown", 1f);
 		} else {
-			countDownText.enabled = false;
+			countDown.SetActive(false);
 			StartGameMode();
 		}
 	}

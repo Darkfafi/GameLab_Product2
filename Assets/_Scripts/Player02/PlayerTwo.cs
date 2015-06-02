@@ -28,11 +28,15 @@ public class PlayerTwo : Player {
 			_myMoveScript.PullDown (_currentStrength);
 			_myMoveScript.AddSpeed (-_currentStrength);
 
-			GetComponent<SpriteRenderer> ().color = new Color (1 / (_slimeStack * 0.5f + 1),1, 1 /(_slimeStack * 0.5f + 1));
 
+			_networkView.RPC ("ChangeColor", RPCMode.All);
 			_networkView.RPC ("SetAnimation", RPCMode.All, "Hit");
 			Invoke ("ReduceSlime", duration);
 		}
+	}
+	private void ChangeColor()
+	{
+		GetComponent<SpriteRenderer> ().color = new Color (1 / (_slimeStack * 0.5f + 1),1, 1 /(_slimeStack * 0.5f + 1));
 	}
 	private void Shake()
 	{
@@ -62,7 +66,7 @@ public class PlayerTwo : Player {
 			_currentStrength *= (float)_slimeStack * 0.2f;
 			_myMoveScript.PullDown(_currentStrength);
 			_myMoveScript.AddSpeed(0.2f);
-			GetComponent<SpriteRenderer> ().color = new Color (1 / (_slimeStack * 0.5f + 1),1, 1 /(_slimeStack * 0.5f + 1));
+			_networkView.RPC ("ChangeColor", RPCMode.All);
 			Invoke("ReduceSlime",2.5f);
 		}
 	}
