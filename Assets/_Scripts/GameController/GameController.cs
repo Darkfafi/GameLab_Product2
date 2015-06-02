@@ -25,9 +25,12 @@ public class GameController : MonoBehaviour {
 		Application.LoadLevel ("Menu");
 	}
 
-	public void ShowEndscreen(string gameMod, string winningTeam, string winnerUsername = ""){
-		endScreen.SetActive (true);
+	public void SetEndScreen(string gameMod, string winningTeam, string winnerUsername = ""){
 		endScreen.GetComponent<EndScreenClass> ().ChangeText (winningTeam, winnerUsername);
+	}
+
+	public void ShowEndscreen(){
+		endScreen.SetActive (true);
 	}
 
 	public void StartGame(){

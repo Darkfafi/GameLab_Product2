@@ -33,14 +33,33 @@ public class GameMode : MonoBehaviour {
 	[RPC]
 	protected virtual void EndGame(string gameMode, string teamwinner, string winners)
 	{
-		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>().ShowEndscreen(gameMode,teamwinner,winners);
+		_timer.GetComponent<Timer> ().PauseTimer ();
+		_slime.GetComponent<MoveByKeyboard>().enabled = false;
+		_playerOne = _slime.GetComponent<PlayerOne>();
+		_playerOne.enabled = false;
+
+		foreach(GameObject fly in _allFlies)
+		{
+			if(fly != null && fly.GetComponent<MoveToTouch>() != null){
+				fly.GetComponent<MoveToTouch>().enabled = false;
+			}
+		}
+		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>().SetEndScreen(gameMode,teamwinner,winners);
+
+		Invoke ("ShowEndScreen", 3f);
+	}
+
+	private void ShowEndScreen(){
+		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>().ShowEndscreen();
 	}
 
 	public virtual void StartGameMode(){
 		_timer.GetComponent<Timer> ().StartTimer ();
+
 		_slime = GameObject.FindGameObjectWithTag(Tags.Player1);
 		_slime.GetComponent<MoveByKeyboard>().enabled = true;
 		_playerOne = _slime.GetComponent<PlayerOne>();
+		_playerOne.enabled = true;
 		GameObject[] allFlies = GameObject.FindGameObjectsWithTag(Tags.Player2);
 		foreach(GameObject fly in allFlies)
 		{
