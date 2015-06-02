@@ -15,12 +15,16 @@ public class Player : MonoBehaviour {
 	}
 	void Start()
 	{
-		_myUserInfo = GameObject.FindGameObjectWithTag(Tags.Connector).GetComponent<UserInfo>();
-		_networkView.RPC("ShowMyUsername", RPCMode.All, _myUserInfo.username);
+		if(_networkView.isMine)
+		{
+			_myUserInfo = GameObject.FindGameObjectWithTag(Tags.Connector).GetComponent<UserInfo>();
+			_networkView.RPC("ShowMyUsername", RPCMode.All, _myUserInfo.username);
+		}
 	}
 	[RPC]
 	private void ShowMyUsername(string username)
 	{
 		usernameText = username;
+		this.name = username;
 	}
 }
