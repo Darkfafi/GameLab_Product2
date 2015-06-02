@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: username
-  isTablet: 1
+  isTablet: 0
 --- !u!114 &269191489
 MonoBehaviour:
   m_ObjectHideFlags: 0
