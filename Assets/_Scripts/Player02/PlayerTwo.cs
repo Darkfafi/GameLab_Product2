@@ -34,6 +34,7 @@ public class PlayerTwo : Player {
 			Invoke ("ReduceSlime", duration);
 		}
 	}
+	[RPC]
 	private void ChangeColor()
 	{
 		GetComponent<SpriteRenderer> ().color = new Color (1 / (_slimeStack * 0.5f + 1),1, 1 /(_slimeStack * 0.5f + 1));
