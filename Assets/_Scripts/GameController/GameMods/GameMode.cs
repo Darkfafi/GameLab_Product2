@@ -49,6 +49,7 @@ public class GameMode : MonoBehaviour {
 
 	private void ShowEndScreen(){
 		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>().ShowEndscreen();
+		_playerOne.GetComponent<MoveableNetworkEntity>().DestroyNetworkObject();
 	}
 
 	public virtual void StartGameMode(){
