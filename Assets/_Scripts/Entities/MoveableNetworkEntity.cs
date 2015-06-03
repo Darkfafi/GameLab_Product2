@@ -166,8 +166,8 @@ public class MoveableNetworkEntity : MonoBehaviour {
 		}
 	}
 	public virtual void DestroyNetworkObject(){
-		Network.Destroy (this.gameObject);
 		Network.RemoveRPCs(this._networkView.owner);
+		Network.Destroy (this.gameObject);
 	}
 	[RPC]
 	protected void SetAnimation(string animName)
